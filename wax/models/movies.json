@@ -1,0 +1,46 @@
+{
+  "applicationName": "movies",
+  "views": [],
+  "startEntity": "actor",
+  "entities" : {
+    "actor" : {
+      "name" : "actor",
+      "plural": "actors",
+      "capitalized": ":Actor",
+      "capitalized-plural": "Actors",
+      "label" : "Actor",
+      "fields" : [
+        {"name": "first", "type": "text", "label": "First Name"},
+        {"name": "last", "type": "text", "label": "Last Name"}
+      ],
+      "listField": "first",
+      "relations": {
+        "movie": {
+          "name": "movie",
+          "type": "map",
+          "label": "Movies",
+          "role": "parent"
+        }
+      }
+    },
+    "movie" : {
+      "name": "movie",
+      "plural": "movies",
+      "capitalized": "Movie",
+      "capitalized-plural": "Movies",
+      "label": "Movie",
+      "fields" : [
+        {"name": "title", "type": "text", "label": "Title"}
+      ],
+      "listField": "title",
+      "relations": {
+        "actor": {
+          "name": "actor",
+          "type": "map",
+          "label": "Actors",
+          "role": "child"
+        }
+      }
+    }
+  }
+}

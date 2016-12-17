@@ -1,0 +1,83 @@
+{
+  "applicationName": "ide",
+  "views": [],
+  "startEntity" : "application",
+  "entities" : {
+    "application" : {
+      "name" : "application",
+      "label" : "Application",
+      "plural": "applications",
+      "capitalized": "Application",
+      "capitalized-plural": "Applications",
+      "fields" : [
+        {"name": "name"}
+      ],
+      "listField": "name",
+      "relations": {
+        "entity": {
+          "name": "entity",
+          "type": "map",
+          "label": "Entities",
+          "role": "child"
+        }
+      }
+    },
+    "entity" : {
+      "name": "entity",
+      "label": "Entity",
+      "plural": "entities",
+      "capitalized": "Entity",
+      "capitalized-plural": "Entities",
+      "labelPlural": "Entities",
+      "fields" : [
+        {"name": "name", "type": "text", "label": "Name"},
+        {"name": "label", "type": "text", "label": "Label"},
+        {"name": "labelPlural", "type": "text", "label": "Plural Label"},
+        {"name": "listField", "type": "text", "label": "List Field"}
+      ],
+      "listField": "name",
+      "relations": {
+        "field": {
+          "name": "field",
+          "type": "map",
+          "label": "Fields",
+          "role": "child"
+        },
+        "relation": {
+          "name": "relation",
+          "type": "map",
+          "label": "Relations",
+          "role": "child"
+        }
+      }
+    },
+    "field" : {
+      "name": "field",
+      "plural": "fields",
+      "capitalized": "Field",
+      "capitalized-plural": "Fields",
+      "label": "Field",
+      "labelPlural": "Fields",
+      "listField": "name",
+      "fields": [
+        {"name": "name", "type": "text", "label": "Name"},
+        {"name": "type", "type": "text", "label": "Type"},
+        {"name": "label", "type": "text", "label": "Label"}
+      ]
+    },
+    "relation" : {
+      "name": "relation",
+      "plural": "relations",
+      "capitalized": "Relation",
+      "capitalized-plural": "Relations",
+      "label": "Relation",
+      "fields" : [
+        {"name": "name",  "type": "text", "label": "Name"},
+        {"name": "type",  "type": "text", "label": "Relation Type (map)"},
+        {"name": "label", "type": "text", "label": "Label"},
+        {"name": "role",  "type": "text", "label": "Role (parent/child)"}
+      ],
+      "listField": "name"
+    }
+  }
+}
