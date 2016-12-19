@@ -19,13 +19,14 @@ module.exports = function (app, model) {
         var application = model.findApplicationByName(req.params.applicationName);
         var entityName = req.params.entityName;
         var entityNameCapitalized = capitalizeFirstLetter(entityName);
+        var entity = application.entities[entityName];
 
         var scope = {
             applicationName: applicationName,
             application: application,
             entityName: entityName,
-            entityNameCapitalized: capitalizeFirstLetter(req.params.entityName),
-            entity: application.entities[req.params.entityName],
+            entityNameCapitalized: entityNameCapitalized,
+            entity: entity,
             serviceJS: req.params.serviceJS
         };
         res.setHeader('content-type', 'text/javascript');
@@ -33,12 +34,17 @@ module.exports = function (app, model) {
     }
 
     function listTemplate(req, res) {
+        var applicationName = req.params.applicationName;
         var application = model.findApplicationByName(req.params.applicationName);
+        var entityName = req.params.entityName;
+        var entityNameCapitalized = capitalizeFirstLetter(entityName);
+        var entity = application.entities[entityName];
+
         var scope = {
-            applicationName: req.params.applicationName,
-            entityName: req.params.entityName,
-            entityNameCapitalized: capitalizeFirstLetter(req.params.entityName),
-            entity: application.entities[req.params.entityName],
+            applicationName: applicationName,
+            entityName: entityName,
+            entityNameCapitalized: entityNameCapitalized,
+            entity: entity,
             listTemplate: req.params.listTemplate,
             application: application
         };
@@ -47,24 +53,36 @@ module.exports = function (app, model) {
     }
 
     function detailsTemplate(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(applicationName);
+        var entityName = req.params.entityName;
+        var entityNameCapitalized = capitalizeFirstLetter(entityName);
+        var detailsTemplate = req.params.detailsTemplate;
         var scope = {
-            applicationName: req.params.applicationName,
-            entityName: req.params.entityName,
-            entityNameCapitalized: capitalizeFirstLetter(req.params.entityName),
-            detailsTemplate: req.params.detailsTemplate,
-            application: model.findApplicationByName(req.params.applicationName)
+            applicationName: applicationName,
+            entityName: entityName,
+            entityNameCapitalized: entityNameCapitalized,
+            detailsTemplate: detailsTemplate,
+            application: application
         };
         res.setHeader('content-type', 'text/javascript');
         res.render("wax/detailsTemplate.ejs", scope);
     }
 
     function detailsController(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(applicationName);
+        var entityName = req.params.entityName;
+        var entityNameCapitalized = capitalizeFirstLetter(entityName);
+        var entity = application.entities[entityName];
+
         var scope = {
-            applicationName: req.params.applicationName,
-            entityName: req.params.entityName,
-            entityNameCapitalized: capitalizeFirstLetter(req.params.entityName),
+            applicationName: applicationName,
+            entityName: entityName,
+            entityNameCapitalized: entityNameCapitalized,
+            entity: entity,
             detailsController: req.params.detailsController,
-            application: model.findApplicationByName(req.params.applicationName)
+            application: application
         };
         res.setHeader('content-type', 'text/javascript');
         res.render("wax/detailsController.ejs", scope);

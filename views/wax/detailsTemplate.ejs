@@ -34,23 +34,55 @@
 <% } %>
 <br/>
 <% } -%>
+
+<%# Relations %>
+
 <%  if(entity.relations) {
 -%>
-<ul class="list-group">
 <%      for(var r in entity.relations) {
             var relation = entity.relations[r];
--%>         <li class="list-group-item">
-                <a href="#/<%= entityName %>/{{model.<%= entityName %>Id}}/<%= r %>/map">
-                    <%= relation.label %>
-                </a>
-                <a class="pull-right" href="#/<%= entityName %>/{{model.<%= entityName %>Id}}/<%= r %>/map"><span
-                    class="glyphicon glyphicon-chevron-right"></span></a>
+            if(relation.render == 'link') {
+-%>
+
+<%# if relation render is link, then render relation as a link to map view where you can add/remove the related instances. Don't actually render the item instances that are related%>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <a href="#/<%= entityName %>/{{model.<%= entityName %>Id}}/<%= r %>/map">
+            <%= relation.label %>
+        </a>
+        <a class="pull-right" href="#/<%= entityName %>/{{model.<%= entityName %>Id}}/<%= r %>/map"><span
+            class="glyphicon glyphicon-chevron-right"></span></a>
     </li>
-<%      }
--%>
 </ul>
-<%  }
+<%          } else if(relation.render == 'list') {
+
+%>
+
+<%# if instead the relation render is 'list', then actually list all the related instances%>
+
+    <h3><%= relation.label %>
+        <a href="#/<%= entityName %>/{{model.<%= entityName %>Id}}/<%= r %>/map" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+        </a>
+    </h3>
+<ul class="list-group">
+    <li ng-repeat="<%= relation.name %> in model.<%= relation.name %>s" class="list-group-item">
+        <a href="#/<%= relation.name %>/{{<%= relation.name %>._id}}">
+            {{<%= relation.name %>.<%= application.entities[relation.name].listField %>}}
+        </a>
+        <a href="#/<%= relation.name %>/{{<%= relation.name %>._id}}" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+        </a>
+    </li>
+</ul>
+<%
+            }
+        }
+    }
 -%>
+
+<%# Button at the bottom %>
 <a ng-click="model.create<%=entityNameCapitalized%>(model.<%=entityName%>)"
    class="btn btn-block btn-primary"
    ng-show="!model.<%= entityName %>Id">

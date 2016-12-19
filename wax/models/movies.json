@@ -19,7 +19,8 @@
           "name": "movie",
           "type": "map",
           "label": "Movies",
-          "role": "parent"
+          "role": "parent",
+          "render": "list"
         }
       }
     },
@@ -38,7 +39,8 @@
           "name": "actor",
           "type": "map",
           "label": "Actors",
-          "role": "child"
+          "role": "child",
+          "render": "link"
         }
       }
     }

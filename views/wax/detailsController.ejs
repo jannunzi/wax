@@ -3,7 +3,17 @@
         .module("<%= applicationName %>")
         .controller("<%= entityName %>DetailsController", <%= entityName %>DetailsController);
 
-    function <%= entityName %>DetailsController($routeParams, <%= entityName %>Service, $location) {
+    function <%= entityName %>DetailsController(
+        <%= entityName %>Service,
+<%  if(typeof entity.relations === 'object') {
+        for(var relatedEntity in entity.relations) {
+-%>        <%= relatedEntity %>Service,
+<%      }
+}
+-%>
+        $routeParams,
+        $location)
+    {
         var vm = this;
         vm.<%= entityName %>Id = $routeParams.<%= entityName %>Id;
         vm.create<%= entityNameCapitalized %> = create<%= entityNameCapitalized %>;
@@ -21,6 +31,15 @@
                         vm.error = error;
                     });
             }
+<%  if(typeof entity.relations === 'object') {
+        for(var relatedEntityName in entity.relations) {
+            var relatedEntity = entity.relations[relatedEntityName];
+            if(typeof relatedEntity.render === 'string' && relatedEntity.render === 'list') {
+%>          load<%=relatedEntityName%>Instances();
+<%          }
+        }
+}
+-%>
         }
         init();
 
@@ -56,5 +75,32 @@
                     vm.error = error;
                 });
         }
+
+<%  if(typeof entity.relations === 'object') {
+        for(var relatedEntityName in entity.relations) {
+            var relatedEntity = entity.relations[relatedEntityName];
+            if(typeof relatedEntity.render === 'string' && relatedEntity.render === 'list') {
+-%>
+        function load<%=relatedEntityName%>Instances() {
+            <%= entityName %>Service
+                .get<%= capitalizeFirstLetter(relatedEntityName) %>s(vm.<%= entityName %>Id)
+                .success(function(<%= relatedEntityName %>s){
+                    vm.<%= relatedEntityName %>s = <%= relatedEntityName %>s;
+                })
+                .error(function(err){
+                    vm.error = err;
+                });
+        }
+<%          }
+}
+}
+-%>
+
     }
 })();
+
+<%
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+%>
