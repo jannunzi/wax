@@ -24,17 +24,17 @@
             // <%= entities[p].name %> Entity Controllers
             //
             .when("/<%= entities[p].name %>", {
-                templateUrl: "/wax/<%= applicationName %>/templates/<%= entities[p].name %>/list/list.html",
+                templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/list/templates/list.html",
                 controller: "<%= entities[p].name %>ListController",
                 controllerAs: "model"
             })
             .when("/<%= entities[p].name %>/new", {
-                templateUrl: "/wax/<%= applicationName %>/templates/<%= entities[p].name %>/details/details.html",
+                templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/details/templates/details.html",
                 controller: "<%= entities[p].name %>DetailsController",
                 controllerAs: "model"
             })
             .when("/<%= entities[p].name %>/:<%= entities[p].name %>Id", {
-                templateUrl: "/wax/<%= applicationName %>/templates/<%= entities[p].name %>/details/details.html",
+                templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/details/templates/details.html",
                 controller: "<%= entities[p].name %>DetailsController",
                 controllerAs: "model"
             })
@@ -43,7 +43,7 @@
                 var relation = entities[p].relations[relatedEntityName];
 -%>
             .when("/<%= entities[p].name %>/:<%= entities[p].name %>Id/<%= relatedEntityName %>/map", {
-                templateUrl: "/wax/<%= applicationName %>/templates/<%= entities[p].name %>/map/<%= relatedEntityName %>/<%= entities[p].name %>2<%= relatedEntityName %>Map.html",
+                templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/<%= relatedEntityName %>/map/templates/<%= entities[p].name %>2<%= relatedEntityName %>Map.html",
                 controller: "<%= entities[p].name %>2<%= relatedEntityName %>MapController",
                 controllerAs: "model"
             })

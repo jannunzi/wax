@@ -5,8 +5,8 @@ module.exports = function (app, model) {
     app.put("/wax/:applicationName/api/:entityName/:entityId/:relatedEntityName/map", setMap);
     app.get("/wax/:applicationName/api/:entityName/:entityId/:relatedEntityName/map", getMap);
     // map list template and controller
-    app.get("/wax/:applicationName/templates/:entityName/map/:relatedEntityName/:mapListTemplate", mapListTemplate)
-    app.get("/wax/:applicationName/controllers/:entityName/map/:relatedEntityName/:mapListController", mapListController)
+    app.get("/wax/:applicationName/entities/:entityName/:relatedEntityName/map/templates/:mapListTemplate", mapListTemplate)
+    app.get("/wax/:applicationName/entities/:entityName/:relatedEntityName/map/controllers/:mapListController", mapListController)
 
     function mapListController(req, res) {
         var applicationName = req.params.applicationName;

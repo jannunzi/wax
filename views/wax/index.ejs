@@ -10,14 +10,14 @@
 <% for(var entityName in entities) {
         var entity = entities[entityName];
 -%>
-    <script src="/wax/<%= applicationName %>/controllers/<%= entityName %>/list/<%= entityName %>ListController.js"></script>
-    <script src="/wax/<%= applicationName %>/controllers/<%= entityName %>/details/<%= entityName %>DetailsController.js"></script>
-    <script src="/wax/<%= applicationName %>/services/<%= entityName %>/<%= entityName %>Service.js"></script>
+    <script src="/wax/<%= applicationName %>/entities/<%= entityName %>/list/controllers/<%= entityName %>ListController.js"></script>
+    <script src="/wax/<%= applicationName %>/entities/<%= entityName %>/details/controllers/<%= entityName %>DetailsController.js"></script>
+    <script src="/wax/<%= applicationName %>/entities/<%= entityName %>/services/<%= entityName %>Service.js"></script>
 <%  if(entity.relations) {
         for(var relatedEntity in entity.relations) {
             var relation = entity.relations[relatedEntity];
 -%>
-    <script src="/wax/<%= applicationName %>/controllers/<%= entityName %>/map/<%= relatedEntity %>/<%= entityName %>2<%= relatedEntity %>MapListController.js"></script>
+    <script src="/wax/<%= applicationName %>/entities/<%= entityName %>/<%= relatedEntity %>/map/controllers/<%= entityName %>2<%= relatedEntity %>MapController.js"></script>
 <%      }
     }
    } -%>

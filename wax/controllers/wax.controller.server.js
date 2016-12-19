@@ -6,11 +6,13 @@ module.exports = function (app, model) {
     app.get("/wax/:applicationName", indexController);
     app.get("/wax/:applicationName/app.js", appController);
     app.get("/wax/:applicationName/config.js", configController);
-    app.get("/wax/:applicationName/controllers/:entityName/list/:listController", listController);
-    app.get("/wax/:applicationName/controllers/:entityName/details/:detailsController", detailsController);
-    app.get("/wax/:applicationName/templates/:entityName/list/:listTemplate", listTemplate);
-    app.get("/wax/:applicationName/templates/:entityName/details/:detailsTemplate", detailsTemplate);
-    app.get("/wax/:applicationName/services/:entityName/:serviceJS", service);
+
+    // TODO: move this to entity specific route handler
+    app.get("/wax/:applicationName/entities/:entityName/list/templates/:listTemplate", listTemplate);
+    app.get("/wax/:applicationName/entities/:entityName/list/controllers/:listController", listController);
+    app.get("/wax/:applicationName/entities/:entityName/details/templates/:detailsTemplate", detailsTemplate);
+    app.get("/wax/:applicationName/entities/:entityName/details/controllers/:detailsController", detailsController);
+    app.get("/wax/:applicationName/entities/:entityName/services/:serviceJS", service);
 
     function service(req, res) {
         var applicationName = req.params.applicationName;

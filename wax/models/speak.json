@@ -1,0 +1,23 @@
+{
+  "applicationName": "speak",
+  "views": [
+    {"_id": "123"}
+  ],
+  "pages": [
+    {"_id": "123", "name": "activity",
+      "views": [
+        {"_id": "123", "type": "navigation-header", "title": "Activity"},
+        {"_id": "345", "type": "search"},
+        {"_id": "234", "type": "table", "data-source": "speaking-partners", "row-template": "/templates/activity/speaking-partner-row"},
+        {"_id": "234", "type": "tabbed-footer"}
+      ]
+    },
+    {"_id": "234", "name": "dictionary",
+      "views": [
+        {"_id": "123", "type": "navigation-header", "title": "Dictionary"}
+      ]
+    }
+  ],
+  "startEntity" : "application",
+  "entities" : {}
+}
