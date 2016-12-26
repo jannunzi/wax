@@ -1,5 +1,6 @@
 module.exports = function (app, model) {
 
+    app.get("/wax/:applicationName/authenticationControllers.js", authenticationControllers);
     // requests for static client content such as
     // index.html, app.js, config.js, html templates, client controllers, client services
     app.get("/wax/:applicationName/index.html", indexController);
@@ -14,6 +15,17 @@ module.exports = function (app, model) {
     app.get("/wax/:applicationName/entities/:entityName/details/controllers/:detailsController", detailsController);
     app.get("/wax/:applicationName/entities/:entityName/services/:serviceJS", service);
 
+    function authenticationControllers(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(req.params.applicationName);
+        var scope = {
+            applicationName: applicationName,
+            application: application
+        };
+        res.setHeader('content-type', 'text/javascript');
+        res.render("wax/authenticationControllers.ejs", scope);
+    }
+    
     function service(req, res) {
         var applicationName = req.params.applicationName;
         var application = model.findApplicationByName(req.params.applicationName);

@@ -1,0 +1,130 @@
+(function () {
+    angular
+        .module("<%= applicationName %>")
+        .controller("LoginController", LoginController)
+        .controller("RegisterController", RegisterController)
+        .controller("ProfileController", ProfileController)
+        .factory("UserService", UserService);
+
+    function LoginController($location, UserService) {
+        var vm = this;
+        vm.login = login;
+
+        function login(user) {
+            if(user)
+                UserService
+                    .login(user)
+                    .then(
+                        function(response) {
+                            $location.url("/profile");
+                        },
+                        function(err) {
+                            vm.error = err;
+                        }
+                    );
+        }
+    }
+
+    function RegisterController($location, UserService) {
+        var vm = this;
+        vm.register = register;
+
+        function register(user) {
+            if (user.password != user.password2 || !user.password || !user.password2) {
+                vm.error = "Your passwords don't match";
+            }
+            else {
+                UserService
+                    .register(user)
+                    .then(
+                        function (response) {
+                            var user = response.data;
+                            if (user != null) {
+                                $location.url("/profile");
+                            }
+                        },
+                        function (err) {
+                            vm.error = err;
+                        }
+                    );
+            }
+        }
+    }
+
+    function ProfileController(UserService, $location) {
+        var vm = this;
+        vm.update = update;
+        vm.logout = logout;
+
+        function init() {
+            UserService
+                .loggedin()
+                .success(function(user){
+                    if(user != '0') {
+                        vm.user = user;
+                    } else {
+                        $location.url("/login");
+                    }
+                });
+        }
+        init();
+
+        function update(user) {
+            UserService
+                .updateUser(user._id, user)
+                .then(
+                    function(response) {
+                        vm.users = response.data;
+                    },
+                    function(err) {
+                        vm.error = err;
+                    }
+                );
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function(response) {
+                        $location.url("/login");
+                    },
+                    function(err) {
+                        vm.error = err;
+                });
+        }
+
+    }
+
+    function UserService($http) {
+        var api = {
+            login: login,
+            loggedin: loggedin,
+            logout: logout,
+            register: register,
+            updateUser: updateUser
+        };
+        return api;
+
+        function login(user) {
+            return $http.post("/wax/<%= applicationName %>/api/user/login", user);
+        }
+
+        function loggedin() {
+            return $http.get("/wax/<%= applicationName %>/api/user/loggedin");
+        }
+
+        function logout() {
+            return $http.post("/wax/<%= applicationName %>/api/user/logout");
+        }
+
+        function register(user) {
+            return $http.post("/wax/<%= applicationName %>/api/user/register", user);
+        }
+
+        function updateUser(userId, user) {
+            return $http.put('/wax/<%= applicationName %>/api/user/update/'+userId, user);
+        }
+
+    }
+})();

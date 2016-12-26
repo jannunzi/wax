@@ -2,6 +2,8 @@ module.exports = function (app) {
 
     var model = require("./models/wax.model.server")();
 
+    require("./services/user.service.server")(app, model);
+
     // data APIs AJAX requests from client services
     require("./services/wax.service.server")(app, model);
 

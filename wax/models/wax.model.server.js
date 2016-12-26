@@ -15,7 +15,16 @@ module.exports = function () {
         update: update,
         remove: remove,
         setMap: setMap,
-        getMap: getMap
+        getMap: getMap,
+        findUserByCredentials: findUserByCredentials,
+        findUserByUsername: findUserByUsername,
+        findUserById: findUserById,
+        // findAllUsers: findAllUsers,
+        createUser: createUser,
+        removeUser: removeUser,
+        updateUser: updateUser
+        // findUserByGoogleId: findUserByGoogleId,
+        // findUserByFacebookId: findUserByFacebookId
     };
     return api;
 
@@ -213,5 +222,85 @@ module.exports = function () {
             db = mongojs(connectionString, collections);
         }
         return application;
+    }
+
+
+    /*
+        Authentication Related
+     */
+
+    function createUser(user) {
+        var deferred = q.defer();
+        var userCollection = application.applicationName+"_user";
+        var collection = db.collection(userCollection);
+        collection.insert(user, function(err, newUser){
+            deferred.resolve(newUser);
+        });
+        return deferred.promise;
+    }
+    function updateUser(userId, user) {
+        var deferred = q.defer();
+        delete user._id;
+        var userCollection = application.applicationName+"_user";
+        var collection = db.collection(userCollection);
+        collection.update({_id: mongojs.ObjectId(userId)}, {$set: user},
+            function(err, status){
+                deferred.resolve(status);
+            });
+        return deferred.promise;
+
+    }
+    function removeUser(userId) {
+        var deferred = q.defer();
+        var userCollection = application.applicationName+"_user";
+        var collection = db.collection(userCollection);
+        collection.remove({_id: mongojs.ObjectId(userId)},
+            function(err, status){
+                deferred.resolve(status);
+            });
+        return deferred.promise;
+    }
+    // function findUserByFacebookId(facebookId) {
+    //     var applicationName = application.applicationName;
+    //     // db[]
+    //     return UserModel.findOne({'facebook.id': facebookId});
+    // }
+    // function findUserByGoogleId(googleId) {
+    //     return UserModel.findOne({'google.id': googleId});
+    // }
+    // function findAllUsers() {
+    //     return UserModel.find();
+    // }
+    function findUserByUsername(username) {
+        var deferred = q.defer();
+        var userCollection = application.applicationName+"_user";
+        var collection = db.collection(userCollection);
+        collection.findOne({username: username},
+            function(err, user){
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
+    function findUserById(userId) {
+        var deferred = q.defer();
+        var userCollection = application.applicationName+"_user";
+        var collection = db.collection(userCollection);
+        collection.findOne({_id: mongojs.ObjectId(userId)},
+            function(err, user){
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
+    function findUserByCredentials(credentials) {
+        var deferred = q.defer();
+        var userCollection = application.applicationName+"_user";
+        var collection = db.collection(userCollection);
+        collection.findOne({
+            username: credentials.username,
+            password: credentials.password},
+            function(err, user){
+                    deferred.resolve(user);
+            });
+        return deferred.promise;
     }
 };

@@ -26,17 +26,26 @@
             .when("/<%= entities[p].name %>", {
                 templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/list/templates/list.html",
                 controller: "<%= entities[p].name %>ListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedin: checkLoggedin
+                }
             })
             .when("/<%= entities[p].name %>/new", {
                 templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/details/templates/details.html",
                 controller: "<%= entities[p].name %>DetailsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedin: checkLoggedin
+                }
             })
             .when("/<%= entities[p].name %>/:<%= entities[p].name %>Id", {
                 templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/details/templates/details.html",
                 controller: "<%= entities[p].name %>DetailsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedin: checkLoggedin
+                }
             })
 <%      if(entities[p].relations) {
             for(var relatedEntityName in entities[p].relations) {
@@ -45,12 +54,36 @@
             .when("/<%= entities[p].name %>/:<%= entities[p].name %>Id/<%= relatedEntityName %>/map", {
                 templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/<%= relatedEntityName %>/map/templates/<%= entities[p].name %>2<%= relatedEntityName %>Map.html",
                 controller: "<%= entities[p].name %>2<%= relatedEntityName %>MapController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedin: checkLoggedin
+                }
             })
 <%          }
         }
     }
 -%>
+            //
+            // user authentication
+            //
+            .when("/login", {
+                templateUrl: "/views/user/login.view.client.html",
+                controller: "LoginController",
+                controllerAs: "model"
+            })
+            .when("/register", {
+                templateUrl: "/views/user/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/profile", {
+                templateUrl: "/views/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedin: checkLoggedin
+                }
+            })
             //
             // default
             //
@@ -66,6 +99,29 @@
             })
             .otherwise({
                 redirectTo: "/<%= startEntity %>"
+
             });
     }
+
+    var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope, UserService) {
+        var deferred = $q.defer();
+
+        $http.get('/wax/<%= applicationName %>/api/user/loggedin').success(function (user) {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0') {
+                $rootScope.currentUser = user;
+                deferred.resolve();
+            }
+            // User is Not Authenticated
+            else {
+                $rootScope.errorMessage = 'You need to log in.';
+                deferred.reject();
+                $location.url('/login');
+            }
+        });
+
+        return deferred.promise;
+    };
+
 })();

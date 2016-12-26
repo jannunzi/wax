@@ -1,19 +1,18 @@
 (function(){
     angular
-        .module("<%= applicationName %>")
-        .factory("<%= entityName %>Service", <%= entityName %>Service);
+    .module("<%= applicationName %>")
+    .factory("<%= entityName %>Service", <%= entityName %>Service);
 /*        .factory("entityService", entityService);
+function entityService($http) {
+var api = {
+findAllEntities: findAllEntities
+};
+return api;
 
-    function entityService($http) {
-        var api = {
-            findAllEntities: findAllEntities
-        };
-        return api;
-
-        function findAllEntities() {
-            return $http.get("/wax/<%= applicationName %>/api/entity");
-        }
-    }
+function findAllEntities() {
+return $http.get("/wax/<%= applicationName %>/api/entity");
+}
+}
 */
     function <%= entityName %>Service($http) {
         var api = {
@@ -29,25 +28,24 @@
 -%>
             "set<%= relatedEntityNameCapitalize %>s": set<%= relatedEntityNameCapitalize %>s,
             "get<%= relatedEntityNameCapitalize %>s": get<%= relatedEntityNameCapitalize %>s,
-<%  }
+<% }
 -%>
         };
         return api;
 
 <%  for(var relatedEntityName in relations) {
-    var relation = relations[relatedEntityName];
-    var relatedEntityNameCapitalize = capitalizeFirstLetter(relatedEntityName);
+        var relation = relations[relatedEntityName];
+        var relatedEntityNameCapitalize = capitalizeFirstLetter(relatedEntityName);
 -%>
-        function set<%= relatedEntityNameCapitalize %>s(<%= entityName %>Id, <%= relatedEntityName%>s) {
-            var url = "/wax/<%= applicationName %>/api/<%= entityName %>/" + <%= entityName %>Id + "/<%= relatedEntityName%>/map";
-            return $http.put(url, <%= relatedEntityName%>s);
+        function set<%= relatedEntityNameCapitalize %>s(<%= entityName %>Id, <%= relatedEntityName %>s) {
+            var url = "/wax/<%= applicationName %>/api/<%= entityName %>/" + <%= entityName %>Id + "/<%= relatedEntityName %>/map";
+            return $http.put(url, <%= relatedEntityName %>s);
         }
-        function get<%= relatedEntityNameCapitalize %>s(<%= entityName %>Id, <%= relatedEntityName%>s) {
-            var url = "/wax/<%= applicationName %>/api/<%= entityName %>/" + <%= entityName %>Id + "/<%= relatedEntityName%>/map";
+        function get<%= relatedEntityNameCapitalize %>s(<%= entityName %>Id, <%= relatedEntityName %>s) {
+            var url = "/wax/<%= applicationName %>/api/<%= entityName %>/" + <%= entityName %>Id + "/<%= relatedEntityName %>/map";
             return $http.get(url);
         }
-
-<%  }
+<% }
 -%>
         function create<%= entityNameCapitalized %>(<%= entityName %>) {
             var url = "/wax/<%= applicationName %>/api/<%= entityName %>";
@@ -58,7 +56,6 @@
             var url = "/wax/<%= applicationName %>/api/<%= entityName %>";
             return $http.get(url);
         }
-
         function find<%= entityNameCapitalized %>ById(<%= entityName %>Id) {
             var url = "/wax/<%= applicationName %>/api/<%= entityName %>/" + <%= entityName %>Id;
             return $http.get(url);

@@ -1,0 +1,95 @@
+<html lang="en" >
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body ng-app="MaterialApp" ng-cloak>
+
+<div ng-controller="AppCtrl" layout="column" style="height: 500px;" ng-cloak>
+
+    <section layout="row" flex>
+
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+            </md-toolbar>
+
+            <md-content layout-margin>
+                <md-button ng-click="toggleLeft()" class="md-accent">
+                    Close this Sidenav
+                </md-button>
+                <md-list>
+                    <md-list-item class="md-1-line">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;
+                        <div class="md-list-item-text">
+                            <a href="#/payment">PAYMENT</a>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                    <md-list-item class="md-1-line">
+                        <i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;
+                        <div class="md-list-item-text">
+                            <a href="#/experiences">EXPERIENCES</a>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                    <md-list-item class="md-1-line">
+                        <i class="fa fa-book" aria-hidden="true"></i>&nbsp;
+                        <div class="md-list-item-text">
+                            <a href="#/dictionary">MY DICTIONARY</a>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+
+
+        </md-sidenav>
+
+        <md-content flex>
+
+            <md-toolbar class="md-hue-1">
+                <div class="md-toolbar-tools">
+                    <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+                        <md-icon  md-font-icon="fa-bars" class="fa"></md-icon>
+                    </md-button>
+                    <h2>
+                        <span>Activity</span>
+                    </h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" aria-label="Favorite">
+                        <md-icon md-font-icon="fa-heart" class="fa" style="color: greenyellow;"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="More">
+                        <md-icon md-font-icon="fa-ellipsis-v" class="fa"  style="color: white;"></md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+        </md-content>
+        <md-divider ></md-divider>
+
+        <ng-view></ng-view>
+
+    </section>
+
+</div>
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+<!-- Your application bootstrap  -->
+<script src="app.js"></script>
+<script src="config.js"></script>
+
+</body>
+</html>

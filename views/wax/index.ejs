@@ -5,9 +5,12 @@
     <link href="/wax/css/styles.css" rel="stylesheet"/>
     <script src="/js/angular.js"></script>
     <script src="/js/angular-route.js"></script>
+
     <script src="/wax/<%= applicationName %>/app.js"></script>
     <script src="/wax/<%= applicationName %>/config.js"></script>
-<% for(var entityName in entities) {
+    <script src="/wax/<%= applicationName %>/authenticationControllers.js"></script>
+
+    <% for(var entityName in entities) {
         var entity = entities[entityName];
 -%>
     <script src="/wax/<%= applicationName %>/entities/<%= entityName %>/list/controllers/<%= entityName %>ListController.js"></script>
