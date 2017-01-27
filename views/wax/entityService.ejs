@@ -1,0 +1,22 @@
+(function(){
+    angular
+    .module("<%= applicationName %>")
+    .factory("entityService", entityService);
+
+    function entityService($http, applicationService, $q) {
+        var api = {
+            findAllEntities: findAllEntities
+        };
+        return api;
+
+        function findAllEntities() {
+            var deferred = $q.defer();
+            applicationService
+                .findApplication("<%= applicationName %>")
+                .success(function(application){
+                    deferred.resolve(application.entities);
+                });
+            return deferred.promise;
+        }
+    }
+})();

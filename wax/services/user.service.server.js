@@ -210,15 +210,7 @@ module.exports = function(app, model) {
             .updateUser(req.params.id, newUser)
             .then(
                 function(user){
-                    return model.findAllUsers();
-                },
-                function(err){
-                    res.status(400).send(err);
-                }
-            )
-            .then(
-                function(users){
-                    res.json(users);
+                    res.json(user);
                 },
                 function(err){
                     res.status(400).send(err);

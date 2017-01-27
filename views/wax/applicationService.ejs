@@ -1,0 +1,21 @@
+(function(){
+    angular
+    .module("<%= applicationName %>")
+    .factory("applicationService", applicationService);
+
+    function applicationService($http) {
+        var application = null;
+        var api = {
+            findApplication: findApplication
+        };
+        return api;
+
+        function findApplication() {
+            if (application == null) {
+                return $http.get("/wax/<%= applicationName %>/api/application");
+            } else {
+                return application;
+            }
+        }
+    }
+})();

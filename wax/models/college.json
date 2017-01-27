@@ -1,0 +1,50 @@
+{
+  "applicationName": "college",
+  "views": [],
+  "startEntity": "course",
+  "relations": {
+    "teacher2course": {
+      "parent": "teacher",
+      "child": "course"
+    }
+  },
+  "entities" : {
+    "teacher": {
+      "name" : "teacher",
+      "fields": [
+        {"name": "first", "type": "text", "label": "First Name"},
+        {"name": "last",  "type": "text", "label": "Last Name"}
+      ],
+      "listField": "last",
+      "detailsPageTemplateUrl": "teacherDetails.html",
+      "listPageTemplateUrl": "teacherList.html",
+      "relations": {
+        "course": {
+          "name": "course",
+          "type": "map",
+          "label": "Courses",
+          "role": "parent",
+          "render": "list",
+          "template": "<h1>{{title}}</h1><p>{{description}}</p>",
+          "templateUrl": "courses.html"
+        }
+      }
+    },
+    "course": {
+      "name" : "course",
+      "fields": [
+        {"name": "title", "type": "text", "label": "Course Title"}
+      ],
+      "listField": "title",
+      "relations": {
+        "teacher": {
+          "name": "teacher",
+          "type": "map",
+          "label": "Teachers",
+          "role": "child",
+          "render": "list"
+        }
+      }
+    }
+  }
+}

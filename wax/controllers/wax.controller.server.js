@@ -8,12 +8,85 @@ module.exports = function (app, model) {
     app.get("/wax/:applicationName/app.js", appController);
     app.get("/wax/:applicationName/config.js", configController);
 
+    app.get("/wax/:applicationName/entities/list/templates/:entityListTemplate", entityListTemplate);
+    app.get("/wax/:applicationName/entities/list/controllers/:entityListController", entityListController);
+    app.get("/wax/:applicationName/entities/details/templates/:entityDetailsTemplate", entityDetailsTemplate);
+    app.get("/wax/:applicationName/entities/details/controllers/:entityDetailsController", entityDetailsController);
+    app.get("/wax/:applicationName/entities/services/entityService.js", entityService);
+    app.get("/wax/:applicationName/services/applicationService.js", applicationService);
+
     // TODO: move this to entity specific route handler
     app.get("/wax/:applicationName/entities/:entityName/list/templates/:listTemplate", listTemplate);
     app.get("/wax/:applicationName/entities/:entityName/list/controllers/:listController", listController);
     app.get("/wax/:applicationName/entities/:entityName/details/templates/:detailsTemplate", detailsTemplate);
     app.get("/wax/:applicationName/entities/:entityName/details/controllers/:detailsController", detailsController);
     app.get("/wax/:applicationName/entities/:entityName/services/:serviceJS", service);
+
+    function applicationService(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(req.params.applicationName);
+        var scope = {
+            applicationName: applicationName,
+            application: application
+        };
+        res.setHeader('content-type', 'text/javascript');
+        res.render("wax/applicationService.ejs", scope);
+    }
+
+    function entityService(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(req.params.applicationName);
+        var scope = {
+            applicationName: applicationName,
+            application: application
+        };
+        res.setHeader('content-type', 'text/javascript');
+        res.render("wax/entityService.ejs", scope);
+    }
+
+    function entityListTemplate(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(req.params.applicationName);
+        var scope = {
+            applicationName: applicationName,
+            application: application
+        };
+        res.setHeader('content-type', 'text/javascript');
+        res.render("wax/entityListTemplate.ejs", scope);
+    }
+
+    function entityListController(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(req.params.applicationName);
+        var scope = {
+            applicationName: applicationName,
+            application: application
+        };
+        res.setHeader('content-type', 'text/javascript');
+        res.render("wax/entityListController.ejs", scope);
+    }
+
+    function entityDetailsTemplate(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(req.params.applicationName);
+        var scope = {
+            applicationName: applicationName,
+            application: application
+        };
+        res.setHeader('content-type', 'text/javascript');
+        res.render("wax/entityDetailsTemplate.ejs", scope);
+    }
+
+    function entityDetailsController(req, res) {
+        var applicationName = req.params.applicationName;
+        var application = model.findApplicationByName(req.params.applicationName);
+        var scope = {
+            applicationName: applicationName,
+            application: application
+        };
+        res.setHeader('content-type', 'text/javascript');
+        res.render("wax/entityDetailsController.ejs", scope);
+    }
 
     function authenticationControllers(req, res) {
         var applicationName = req.params.applicationName;

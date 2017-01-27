@@ -231,8 +231,8 @@ module.exports = function () {
 
     function createUser(user) {
         var deferred = q.defer();
-        var userCollection = application.applicationName+"_user";
-        var collection = db.collection(userCollection);
+        // var userCollection = application.applicationName+"_user";
+        var collection = db.collection("user");
         collection.insert(user, function(err, newUser){
             deferred.resolve(newUser);
         });
@@ -241,8 +241,8 @@ module.exports = function () {
     function updateUser(userId, user) {
         var deferred = q.defer();
         delete user._id;
-        var userCollection = application.applicationName+"_user";
-        var collection = db.collection(userCollection);
+        // var userCollection = application.applicationName+"_user";
+        var collection = db.collection("user");
         collection.update({_id: mongojs.ObjectId(userId)}, {$set: user},
             function(err, status){
                 deferred.resolve(status);
@@ -252,8 +252,8 @@ module.exports = function () {
     }
     function removeUser(userId) {
         var deferred = q.defer();
-        var userCollection = application.applicationName+"_user";
-        var collection = db.collection(userCollection);
+        // var userCollection = application.applicationName+"_user";
+        var collection = db.collection("user");
         collection.remove({_id: mongojs.ObjectId(userId)},
             function(err, status){
                 deferred.resolve(status);
@@ -273,8 +273,8 @@ module.exports = function () {
     // }
     function findUserByUsername(username) {
         var deferred = q.defer();
-        var userCollection = application.applicationName+"_user";
-        var collection = db.collection(userCollection);
+        // var userCollection = application.applicationName+"_user";
+        var collection = db.collection("user");
         collection.findOne({username: username},
             function(err, user){
                 deferred.resolve(user);
@@ -283,8 +283,8 @@ module.exports = function () {
     }
     function findUserById(userId) {
         var deferred = q.defer();
-        var userCollection = application.applicationName+"_user";
-        var collection = db.collection(userCollection);
+        // var userCollection = application.applicationName+"_user";
+        var collection = db.collection("user");
         collection.findOne({_id: mongojs.ObjectId(userId)},
             function(err, user){
                 deferred.resolve(user);
@@ -293,8 +293,8 @@ module.exports = function () {
     }
     function findUserByCredentials(credentials) {
         var deferred = q.defer();
-        var userCollection = application.applicationName+"_user";
-        var collection = db.collection(userCollection);
+        // var userCollection = application.applicationName+"_user";
+        var collection = db.collection("user");
         collection.findOne({
             username: credentials.username,
             password: credentials.password},

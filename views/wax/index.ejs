@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="<%= applicationName %>">
 <head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name = "viewport" content = "initial-scale = 1.25, user-scalable = no">
+
     <link href="/css/bootstrap.css" rel="stylesheet"/>
     <link href="/wax/css/styles.css" rel="stylesheet"/>
     <script src="/js/angular.js"></script>
@@ -24,6 +28,11 @@
 <%      }
     }
    } -%>
+    <script src="/wax/<%= applicationName %>/entities/services/entityService.js"></script>
+    <script src="/wax/<%= applicationName %>/services/applicationService.js"></script>
+    <script src="/wax/<%= applicationName %>/entities/list/controllers/entityListController.js"></script>
+    <script src="/wax/<%= applicationName %>/entities/details/controllers/entityDetailsController.js"></script>
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>

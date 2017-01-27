@@ -27,25 +27,25 @@
                 templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/list/templates/list.html",
                 controller: "<%= entities[p].name %>ListController",
                 controllerAs: "model",
-                resolve: {
-                    checkLoggedin: checkLoggedin
-                }
+//                resolve: {
+  //                  checkLoggedin: checkLoggedin
+    //            }
             })
             .when("/<%= entities[p].name %>/new", {
                 templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/details/templates/details.html",
                 controller: "<%= entities[p].name %>DetailsController",
                 controllerAs: "model",
-                resolve: {
-                    checkLoggedin: checkLoggedin
-                }
+      //          resolve: {
+        //            checkLoggedin: checkLoggedin
+          //      }
             })
             .when("/<%= entities[p].name %>/:<%= entities[p].name %>Id", {
                 templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/details/templates/details.html",
                 controller: "<%= entities[p].name %>DetailsController",
                 controllerAs: "model",
-                resolve: {
-                    checkLoggedin: checkLoggedin
-                }
+            //    resolve: {
+              //      checkLoggedin: checkLoggedin
+                //}
             })
 <%      if(entities[p].relations) {
             for(var relatedEntityName in entities[p].relations) {
@@ -55,9 +55,9 @@
                 templateUrl: "/wax/<%= applicationName %>/entities/<%= entities[p].name %>/<%= relatedEntityName %>/map/templates/<%= entities[p].name %>2<%= relatedEntityName %>Map.html",
                 controller: "<%= entities[p].name %>2<%= relatedEntityName %>MapController",
                 controllerAs: "model",
-                resolve: {
-                    checkLoggedin: checkLoggedin
-                }
+//                resolve: {
+  //                  checkLoggedin: checkLoggedin
+    //            }
             })
 <%          }
         }
@@ -85,15 +85,25 @@
                 }
             })
             //
+            // entity
+            //
+            .when("/entity", {
+                templateUrl: "/wax/<%= applicationName %>/entities/list/templates/list.html",
+                controller: "entityListController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedin: checkLoggedin
+                }
+            })
+            .when("/entity/new", {
+                templateUrl: "/wax/<%= applicationName %>/entities/details/templates/details.html"
+            })
+            .when("/entity/:name", {
+                templateUrl: "/wax/<%= applicationName %>/entities/details/templates/details.html"
+            })
+            //
             // default
             //
-/*
-            .when("/entity", {
-                templateUrl: "/wax/entity-list.view.client.html",
-                controller:  "entityListController",
-                controllerAs: "model"
-            })
-*/
             .when("/default", {
                 templateUrl: "/wax/default.html"
             })

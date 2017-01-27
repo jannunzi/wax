@@ -15,14 +15,24 @@
         init();
 
         function findAllEntities() {
-            entityService
-                .findAllEntities
+            var res = entityService.findAllEntities();
+            console.log(res);
+            if (typeof res.$$state == "object") {
+                res.success(function (entities) {
+                        vm.entities = entities
+                    })
+                    .error(function (error) {
+                        vm.error = error;
+                    });
+            }
+/*
                 .success(function (entities) {
                     vm.entities = entities
                 })
                 .error(function (error) {
                     vm.error = error;
                 });
+*/
         }
 
         function createEntity(entity) {
