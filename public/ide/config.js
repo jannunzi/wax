@@ -7,20 +7,20 @@
         $routeProvider
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
-                controller : "HomeController"
+                controller : "HomeController as HomeModel"
             })
-            .when("/register", {
-                templateUrl: "views/register/register.view.html",
-                controller : "RegisterController"
+            .when("/website", {
+                templateUrl: "views/website/website.view.html",
+                controller : "WebsiteController as WebsiteModel"
             })
-            .when("/profile/:userid", {
-                templateUrl: "views/profile/profile.view.html",
-                controller: "ProfileController"
+            .when("/page", {
+                templateUrl: "views/page/page.view.html",
+                controller: "PageController as PageModel"
             })
 
-            .when("/login", {
-                templateUrl: "views/login/login.view.html",
-                controller : "LoginController"
+            .when("/user", {
+                templateUrl: "views/user/user.view.html",
+                controller : "UserController as UserModel"
             })
             .otherwise({
                 redirectTo: "/home"

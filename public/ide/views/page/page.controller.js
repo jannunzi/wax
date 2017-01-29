@@ -4,9 +4,9 @@
 (function () {
     angular
         .module("genXapp")
-        .controller("HeaderController", HeaderController);
+        .controller("PageController", PageController);
 
-    function HeaderController() {
+    function PageController() {
 
     }
 })();
