@@ -1,1 +1,2 @@
 # wax
+Using ES6..!!
