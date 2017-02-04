@@ -9,7 +9,7 @@
                 templateUrl: "views/home/home.view.html",
                 controller : "HomeController as HomeModel"
             })
-            .when("/website", {
+            .when("/user/:uid/website", {
                 templateUrl: "views/website/website.view.html",
                 controller : "WebsiteController as WebsiteModel"
             })
