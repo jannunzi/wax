@@ -9,6 +9,7 @@
             logout: logout,
             register: register,
             findAllUsers: findAllUsers,
+            findUserByUserId: findUserByUserId,
             deleteUser: deleteUser,
             updateUser: updateUser,
             createUser: createUser
@@ -32,7 +33,11 @@
         }
 
         function findAllUsers() {
-            return $http.get("/api/user");
+            return $http.get("/api/users/admin");
+        }
+
+        function findUserByUserId(user) {
+            return $http.get("/api/user/" + user.id);
         }
 
         function register(user) {

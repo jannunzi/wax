@@ -12,21 +12,37 @@
         var vm = this;
         vm.login = login;
         vm.register = register;
+        vm.register = register;
+        vm.toggleNavBar = toggleNavBar;
+
+        function toggleNavBar(val) {
+            if (val == true) {
+                document.getElementById("mySidenav").style.width = "60%";
+                document.getElementById("mySidenav").style.display = "block";
+            }
+            else {
+                document.getElementById("mySidenav").style.display = "none";
+            }
+        }
 
         function login(user) {
+            console.log(user);
             if (user) {
                 var ret = UserService.login(user)
                     .success(function (user) {
                         if (user === '0') {
                             vm.alert = "No such user";
+                            console.log(vm.alert);
                         }
                         else {
+                            console.log(user);
                             $rootScope.currentUser = user;
                             $location.url("/user/" + user._id + "/website");
                         }
                     })
                     .error(function () {
                         vm.error = "No such user";
+                        console.log(vm.alert);
                     });
             }
         }
