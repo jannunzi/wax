@@ -7,7 +7,6 @@
         var api = {
             login: login,
             logout: logout,
-            register: register,
             findAllUsers: findAllUsers,
             findUserByUserId: findUserByUserId,
             deleteUser: deleteUser,
@@ -16,12 +15,14 @@
         };
         return api;
 
-        function logout() {
-            return $http.post("/api/logout");
-        }
+        app.get('/api/user?', findByQueryString); /* for login */
 
         function createUser(user) {
             return $http.post('/api/user', user);
+        }
+
+        function findUserByUserId(user) {
+            return $http.get("/api/user/" + user.id);
         }
 
         function updateUser(userId, user) {
@@ -36,16 +37,14 @@
             return $http.get("/api/users/admin");
         }
 
-        function findUserByUserId(user) {
-            return $http.get("/api/user/" + user.id);
-        }
-
-        function register(user) {
-            return $http.post("/api/register", user);
-        }
-
         function login(user) {
-            return $http.post("/api/login", user);
+            var url = "/api/user?username=" + user.username + "&password=" + user.password;
+            return $http.get(url);
         }
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
     }
 })();
