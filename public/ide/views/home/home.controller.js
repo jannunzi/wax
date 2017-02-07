@@ -13,17 +13,7 @@
         vm.login = login;
         vm.register = register;
         vm.register = register;
-        vm.toggleNavBar = toggleNavBar;
-
-        function toggleNavBar(val) {
-            if (val == true) {
-                document.getElementById("mySidenav").style.width = "60%";
-                document.getElementById("mySidenav").style.display = "block";
-            }
-            else {
-                document.getElementById("mySidenav").style.display = "none";
-            }
-        }
+        vm.mySidenav = false;
 
         function login(user) {
             console.log(user);
@@ -31,17 +21,17 @@
                 var ret = UserService.login(user)
                     .success(function (user) {
                         if (user === '0') {
-                            vm.alert = "No such user";
+                            vm.alert = 'No such user';
                             console.log(vm.alert);
                         }
                         else {
                             console.log(user);
                             $rootScope.currentUser = user;
-                            $location.url("/user/" + user._id + "/website");
+                            $location.url(`/user/${user._id}/website`);
                         }
                     })
                     .error(function () {
-                        vm.error = "No such user";
+                        vm.error = 'No such user';
                         console.log(vm.alert);
                     });
             }
@@ -58,10 +48,10 @@
                 UserService.createUser(user)
                     .success(function (userObj) {
                         $rootScope.currentUser = userObj;
-                        $location.url("/user/" + userObj._id + "/website");
+                        $location.url(`/user/${userObj._id}/website`);
                     })
                     .error(function (error) {
-                        vm.error = "Cannot create a user";
+                        vm.error = 'Cannot create a user';
                     });
             }
         }
