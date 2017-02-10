@@ -57,9 +57,10 @@ d2.directive("draw2dCanvas", ["$window","$parse", "$timeout", function($window,$
     	           };
     	           canvas.on("select", function(canvas,figure){
     	               $timeout(function(){
+    	               	figure = figure.figure;
     	            	   if(figure!==null){
-    	            		   scope.editor.selection.className = figure.NAME;
-    	            		   scope.editor.selection.attr = figure.attr();
+    	            		   scope.editor.selection.className = figure.NAME || figure.__proto__.NAME;
+    	            		   scope.editor.selection.attr =  figure.attr();
     	            	   }
     	            	   else {
     	            		   scope.editor.selection.className = null;
@@ -93,7 +94,7 @@ d2.directive("draw2dCanvas", ["$window","$parse", "$timeout", function($window,$
     	           scope.editor.undo = $.proxy(stack.undo,stack);
     	           scope.editor.redo = $.proxy(stack.redo,stack);
     	           scope.editor["delete"] = $.proxy(function(){
-    	   			  var node = this.getCurrentSelection();
+    	   			  var node = this.selection.primary;
     				  var command= new draw2d.command.CommandDelete(node);
     				  this.getCommandStack().execute(command);
     	           },canvas);

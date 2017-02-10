@@ -490,9 +490,9 @@
          Shape Properties
      </div>
      <div id="properties" ng-switch on="editor.selection.className">
-         
-         <div ng-switch-when="draw2d.shape.node.Start">
-           Start
+
+         <div ng-switch-when="draw2d.shape.basic.Circle">
+           Circle
            <div class="panel panel-default">
 	           <div class="panel-heading" >Position</div>
 	           <div class="panel-body" id="position_panel">
@@ -503,9 +503,9 @@
 	           </div>
            </div>
          </div>
-         
-         <div ng-switch-when="draw2d.shape.node.End" >
-           End
+
+         <div ng-switch-when="draw2d.shape.basic.Rectangle" >
+           Rectangle
            <div class="panel panel-default">
 	           <div class="panel-heading" >Position</div>
 	           <div class="panel-body" id="position_panel1">
@@ -515,9 +515,36 @@
 	               </div>
 	           </div>
            </div>
-        </div>    
+         </div>
+
+         <div ng-switch-when="draw2d.shape.basic.Line" >
+             Basic Line
+             <div class="panel panel-default">
+                 <div class="panel-heading" >Position</div>
+                 <div class="panel-body" id="position_panel2">
+                     <div class="form-group">
+                         x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
+                         y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+         <div ng-switch-when="draw2d.shape.basic.PolyLine" >
+             Poly Line
+             <div class="panel panel-default">
+                 <div class="panel-heading" >Position</div>
+                 <div class="panel-body" id="position_panel3">
+                     <div class="form-group">
+                         x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
+                         y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
+                     </div>
+                 </div>
+             </div>
+         </div>
+
      </div>
-     
+
    </div>
    
    <div id="palettePane" draw2d-palette>

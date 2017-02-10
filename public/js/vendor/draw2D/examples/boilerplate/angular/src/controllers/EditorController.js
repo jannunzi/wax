@@ -35,22 +35,22 @@ app.controller('EditorController',[ '$scope', "$modal", function($scope,  $modal
                 //
                 onDrop: function(droppedDomNode, x, y, shiftKey, ctrlKey){
                     var type = $(droppedDomNode).data("shape");
-                    var figure = eval("new "+type+"();");
+                    var figure = eval("new "+type+"();");//new draw2d.shape.basic.Circle({x: x, y: y});//eval("new "+type+"();");
                     // create a command for the undo/redo support
                     var command = new draw2d.command.CommandAdd(this, figure, x, y);
                     this.getCommandStack().execute(command);
-                }
+                },
             },
  
             // provide all figures to show in the left hand palette
-            // Used by the directrives/canvas.js
+            // Used by the directives/canvas.js
             palette: {
                     figures: [
-                        {class:"draw2d.shape.basic.Circle", name:"Circle", attr: {cssClass: "draw2d_shape_basic_Circle"}},
-                        {class:"draw2d.shape.basic.Rectangle", name:"Rectangle", "cssClass": "draw2d_shape_basic_Rectangle"},
-                        {class:"draw2d.shape.basic.Line", name: "Line", attr: {cssClass: "draw2d_shape_basic_Line"}},
-                        {class:"draw2d.shape.node.Start", name:"Start", "cssClass": "draw2d_shape_basic_Circle"},
-                        {class:"draw2d.shape.node.End"  , name:"End", "cssClass": "draw2d_shape_basic_Circle"},
+                        {class:"draw2d.shape.basic.Circle", name:"Circle"},
+                        {class:"draw2d.shape.basic.Rectangle", name:"Rectangle"},
+                        {class:"draw2d.shape.basic.Line", name: "Line"},
+                        {class:"draw2d.shape.basic.PolyLine", name:"PLine"},
+                        {class:"draw2d.shape.arrow.CalligrapherArrowDownLeft"  , name:"End"},
                     ]
             }
     };
