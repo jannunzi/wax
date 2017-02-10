@@ -46,8 +46,9 @@ app.controller('EditorController',[ '$scope', "$modal", function($scope,  $modal
             // Used by the directrives/canvas.js
             palette: {
                     figures: [
-                        {class:"draw2d.shape.basic.Circle", name:"Circle", "cssClass": "draw2d_shape_basic_Circle", attr: {cssClass: "draw2d_shape_basic_Circle"}},
-                        {class:"draw2d.shape.basic.Rectangle", name:"Rectangle", "cssClass": "draw2d_shape_basic_Circle"},
+                        {class:"draw2d.shape.basic.Circle", name:"Circle", attr: {cssClass: "draw2d_shape_basic_Circle"}},
+                        {class:"draw2d.shape.basic.Rectangle", name:"Rectangle", "cssClass": "draw2d_shape_basic_Rectangle"},
+                        {class:"draw2d.shape.basic.Line", name: "Line", attr: {cssClass: "draw2d_shape_basic_Line"}},
                         {class:"draw2d.shape.node.Start", name:"Start", "cssClass": "draw2d_shape_basic_Circle"},
                         {class:"draw2d.shape.node.End"  , name:"End", "cssClass": "draw2d_shape_basic_Circle"},
                     ]
