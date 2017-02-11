@@ -50,7 +50,7 @@ app.controller('EditorController',[ '$scope', "$modal", function($scope,  $modal
                         {class:"draw2d.shape.basic.Rectangle", name:"Rectangle"},
                         {class:"draw2d.shape.basic.Line", name: "Line"},
                         {class:"draw2d.shape.basic.PolyLine", name:"PLine"},
-                        {class:"draw2d.shape.arrow.CalligrapherArrowDownLeft"  , name:"End"},
+                        {class:"draw2d.shape.basic.Polygon"  , name:"Polygon"},
                     ]
             }
     };

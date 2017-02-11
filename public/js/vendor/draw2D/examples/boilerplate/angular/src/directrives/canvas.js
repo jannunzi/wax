@@ -10,7 +10,7 @@ d2.directive("draw2dCanvas", ["$window","$parse", "$timeout", function($window,$
    	                //
 	   	            scope.editor= $.extend(true,{
 	   	        	    canvas: {
-	   	        	    	width : 2000,
+	   	        	    	width : 3000,
     	                    height: 2000,
 	   	        	    	onDrop: function(droppedDomNode, x, y, shiftKey, ctrlKey){}
 	   	        	    },

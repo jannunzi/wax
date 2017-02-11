@@ -497,7 +497,8 @@
 	           <div class="panel-heading" >Position</div>
 	           <div class="panel-body" id="position_panel">
 	               <div class="form-group">
-	                   x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
+                       c: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
+                       x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
 	                   y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
 	               </div>
 	           </div>
@@ -510,7 +511,8 @@
 	           <div class="panel-heading" >Position</div>
 	           <div class="panel-body" id="position_panel1">
 	               <div class="form-group">
-	                   x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
+                       h: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
+                       x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
 	                   y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
 	               </div>
 	           </div>
@@ -523,6 +525,7 @@
                  <div class="panel-heading" >Position</div>
                  <div class="panel-body" id="position_panel2">
                      <div class="form-group">
+                         h: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
                          x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
                          y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
                      </div>
@@ -536,12 +539,28 @@
                  <div class="panel-heading" >Position</div>
                  <div class="panel-body" id="position_panel3">
                      <div class="form-group">
+                         h: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
                          x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
                          y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
                      </div>
                  </div>
              </div>
          </div>
+
+         <div ng-switch-when="draw2d.shape.basic.Polygon" >
+             Polygon
+             <div class="panel panel-default">
+                 <div class="panel-heading" >Position</div>
+                 <div class="panel-body" id="position_panel4">
+                     <div class="form-group">
+                         h: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
+                         x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
+                         y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
+                     </div>
+                 </div>
+             </div>
+         </div>
+
 
      </div>
 
