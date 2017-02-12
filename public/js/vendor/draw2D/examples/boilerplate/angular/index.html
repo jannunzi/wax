@@ -486,10 +486,25 @@
    
 
    <div id="propertyPane" >
-     <div id="propertyHeader" class="highlight panetitle blackgradient">
-         Shape Properties
-     </div>
-     <div id="properties" ng-switch on="editor.selection.className">
+
+       <div ng-controller="myctrl">
+           <div id="propertyHeader1" class="highlight panetitle blackgradient">
+               Free Hand
+           </div>
+           <button type="reset" ng-click="click()">reset</button>
+           <button type="reset" ng-click="undo()">undo</button>
+           <button type="reset" ng-click="redo()">redo</button>
+
+           <div>
+               <!--<button type="reset" ng-click="click()">reset</button>-->
+               <canvas width="200" height="300" id="canvasNew" drawing style="border: dotted"></canvas>
+           </div>
+       </div>
+       <div id="propertyHeader" class="highlight panetitle blackgradient">
+           Shape Properties
+       </div>
+
+       <div id="properties" ng-switch on="editor.selection.className">
 
          <div ng-switch-when="draw2d.shape.basic.Circle">
            Circle
@@ -511,7 +526,7 @@
 	           <div class="panel-heading" >Position</div>
 	           <div class="panel-body" id="position_panel1">
 	               <div class="form-group">
-                       h: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
+                       c: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
                        x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
 	                   y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
 	               </div>
@@ -525,7 +540,7 @@
                  <div class="panel-heading" >Position</div>
                  <div class="panel-body" id="position_panel2">
                      <div class="form-group">
-                         h: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
+                         c: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
                          x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
                          y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
                      </div>
@@ -539,7 +554,7 @@
                  <div class="panel-heading" >Position</div>
                  <div class="panel-body" id="position_panel3">
                      <div class="form-group">
-                         h: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
+                         c: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
                          x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
                          y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
                      </div>
@@ -553,7 +568,7 @@
                  <div class="panel-heading" >Position</div>
                  <div class="panel-body" id="position_panel4">
                      <div class="form-group">
-                         h: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
+                         c: <input class="form-control" ng-model="editor.selection.attr.bgColor.hashString" ><br>
                          x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
                          y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >
                      </div>
@@ -569,9 +584,8 @@
    <div id="palettePane" draw2d-palette>
    </div>
          
-   <div id="canvas" draw2d-canvas>
+   <div id="canvas" draw2d-canvas >
    </div>
-
 
 </body>
 
@@ -592,6 +606,5 @@
     <SCRIPT src="./src/factories/FileFactory.js"></SCRIPT>
     <SCRIPT src="./src/controllers/EditorController.js"></SCRIPT>
     <SCRIPT src="./src/controllers/FileOpenController.js"></SCRIPT>
-    
-    
+    <!--<SCRIPT src="./src/directrives/new.js"></SCRIPT>-->
 </html>
