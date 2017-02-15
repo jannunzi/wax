@@ -19,7 +19,7 @@
             console.log(user);
             if (user) {
                 var ret = UserService.login(user)
-                    .success(function (user) {
+                    .then(function (user) {
                         if (user === '0') {
                             vm.alert = 'No such user';
                             console.log(vm.alert);
@@ -46,7 +46,7 @@
             }
             else {
                 UserService.createUser(user)
-                    .success(function (userObj) {
+                    .then(function (userObj) {
                         $rootScope.currentUser = userObj;
                         $location.url(`/user/${userObj._id}/website`);
                     })

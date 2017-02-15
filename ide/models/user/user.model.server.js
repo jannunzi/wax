@@ -14,7 +14,6 @@ function create(user){
     const deferred = q.defer();
     const newUser = user;
     newUser.password = bcrypt.hashSync(newUser.password);
-
     UserModel.create(newUser,function(err , user){
         deferred.resolve(user);
         console.log("New User creadted: ");
@@ -88,7 +87,8 @@ function findUserByCredentials( username , password){
     console.log(password);
     const deferred = q.defer();
     UserModel.find({username:username}, function(err , user){
-        if (bcrypt.compareSync(password, hash)) {
+        deferred.resolve(user);
+        if (bcrypt.compareSync(user.password, password)) {
             deferred.resolve(user);
         }
         else {
