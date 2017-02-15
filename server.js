@@ -1,9 +1,10 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const passport      = require('passport');
+const cookieParser  = require('cookie-parser');
+const session       = require('express-session');
+const bodyParser = require('body-parser');
 
-var passport      = require('passport');
-var cookieParser  = require('cookie-parser');
-var session       = require('express-session');
+const app = express();
 
 app.use(session({
     secret: 'this is the secret',
@@ -16,8 +17,6 @@ app.use(passport.session());
 
 app.set('view engine', 'ejs');
 
-
-var bodyParser = require('body-parser');
 app.use(bodyParser.json({type: 'website/json'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -26,7 +25,12 @@ app.use(express.static(__dirname + '/public'));
 
 require("./wax/app")(app);
 
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+const ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+const port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 app.listen(port, ipaddress);
+console.log('Running...!!!');
+
+// not using dependency injection anymore
+module.exports = app;
+require("./ide/services/user.services.server");
