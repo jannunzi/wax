@@ -33,4 +33,5 @@ console.log('Running...!!!');
 
 // not using dependency injection anymore
 module.exports = app;
-require("./ide/services/user.services.server");
+require("./ide/app.js")(app);
+//require("./ide/services/user.services.server");
