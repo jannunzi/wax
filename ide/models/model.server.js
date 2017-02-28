@@ -4,8 +4,8 @@ module.exports = function () {
     var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://127.0.0.1:27017/genXapp';
     mongoose.connect(connectionString);
 
-    var userModel = require("./user/user.model.server.js")();
-    var websiteModel = require("./website/website.model.server.js")();
+    var userModel = require("./user/user.model.server")();
+    var websiteModel = require("./website/website.model.server")();
 
     var model = {
         userModel: userModel,

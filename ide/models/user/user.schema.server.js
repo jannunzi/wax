@@ -11,6 +11,6 @@ module.exports = function () {
         password: String,
         state: String,
         city: String,
-    }, {collection: "users"});
+    }, {collection: "user"});
     return UserSchema;
 };

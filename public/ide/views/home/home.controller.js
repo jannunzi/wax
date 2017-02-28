@@ -12,27 +12,22 @@
         var vm = this;
         vm.login = login;
         vm.register = register;
-        vm.register = register;
         vm.mySidenav = false;
 
         function login(user) {
-            console.log(user);
             if (user) {
-                var ret = UserService.login(user)
-                    .then(function (user) {
-                        if (user === '0') {
-                            vm.alert = 'No such user';
-                            console.log(vm.alert);
-                        }
-                        else {
-                            console.log(user);
-                            $rootScope.currentUser = user;
-                            $location.url(`/user/${user._id}/website`);
-                        }
-                    })
+                var ret = UserService.login(user);
+                ret.success(function (user) {
+                    if (user === '0') {
+                        vm.alert = "No such user";
+                    }
+                    else {
+                        $rootScope.currentUser = user;
+                        $location.url("/user/" + user._id);
+                    }
+                })
                     .error(function () {
-                        vm.error = 'No such user';
-                        console.log(vm.alert);
+                        vm.alert = "No such user";
                     });
             }
         }
@@ -46,12 +41,12 @@
             }
             else {
                 UserService.createUser(user)
-                    .then(function (userObj) {
+                    .success(function (userObj) {
                         $rootScope.currentUser = userObj;
-                        $location.url(`/user/${userObj._id}/website`);
+                        $location.url(`/user/"${userObj._id}/website`);
                     })
                     .error(function (error) {
-                        vm.error = 'Cannot create a user';
+                        vm.alert = "Cannot create a user";
                     });
             }
         }

@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
-require("./wax/app")(app);
+//require("./wax/app")(app);
 
 const ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 const port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;

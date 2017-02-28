@@ -3,91 +3,67 @@
         .module("genXapp")
         .factory("UserService", UserService);
 
-    function UserService($http, $q) {
+    function UserService($http) {
+
         var api = {
-            login: login,
-            logout: logout,
-            findAllUsers: findAllUsers,
-            findUserByUserId: findUserByUserId,
-            deleteUser: deleteUser,
-            updateUser: updateUser,
-            createUser: createUser
+            "createUser": createUser,
+            "findUserById": findUserById,
+            "findUserByUsername": findUserByUsername,
+            "findUserByCredentials": findUserByCredentials,
+            "login": login,
+            "logout": logout,
+            "updateUser": updateUser,
+            "deleteUser": deleteUser,
+            "checkLogin": checkLogin,
+            "findCurrentUser":findCurrentUser
         };
         return api;
 
-        app.get('/api/user?', findByQueryString);
-        /* for login */
-
-        function createUser(user) {
-            console.log(user);
-            //return $http.post('/api/user', user);
-
-            var deferred = $q.defer();
-            $http.post("/api/user", user)
-                .success(function (response) {
-                    deferred.resolve(response);
-                });
-            return deferred.promise;
-
-            /*
-             var deferred = $q.defer();
-             $http.post("/api/user",user)
-             .success(function(response){
-             deferred.resolve(response);
-             });
-             return deferred.promise;*/
-
-            /*            $http({
-             method: 'POST',
-             url: '/api/user',
-             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-             transformRequest: function(obj) {
-             var str = [];
-             for(var p in obj)
-             str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-             return str.join("&");
-             },
-             data: user
-             }).success(function (res) {
-             console.log("login done" + res);
-             deferred.resolve(res);
-             });
-             return deferred.promise;*/
+        function findCurrentUser() {
+            var url = "/api/user";
+            return $http.get(url);
         }
 
-        function findUserByUserId(user) {
-            return $http.get("/api/user/" + user.id);
+        function createUser(user) {
+            console.log("in client" + JSON.stringify(user));
+            return $http.post('/api/register', user);
+        }
+
+        function findUserById(userId) {
+            var url = "/api/user/" + userId;
+            return $http.get(url);
+        }
+
+        function findUserByUsername(username) {
+            var url = "/api/user?username=" + username;
+            return $http.get(url);
+        }
+
+        function findUserByCredentials(username, password) {
+            var url = "/api/user?username=" + username + "&password=" + password;
+            return $http.get(url);
         }
 
         function updateUser(userId, user) {
-            return $http.put('/api/user/' + userId, user);
+            var url = "/api/user/" + userId;
+            return $http.put(url, user);
         }
 
         function deleteUser(userId) {
-            return $http.delete('/api/user/' + userId);
-        }
-
-        function findAllUsers() {
-            return $http.get("/api/users/admin");
+            var url = "/api/user/" + userId;
+            return $http.delete(url);
         }
 
         function login(user) {
-            /*
-             var url = "/api/user?username=" + user.username + "&password=" + user.password;
-             return $http.get(url);
-             */
-
-            var deferred = $q.defer();
-            $http.get(`/api/user?username=${user.username}&password=${user.password}`)
-                .success(function (response) {
-                    deferred.resolve(response);
-                });
-            return deferred.promise;
+            return $http.post("/api/login", user);
         }
 
-        function logout() {
+        function logout(user) {
             return $http.post("/api/logout");
         }
 
+        function checkLogin() {
+            return $http.post('/api/checkLogin');
+        }
     }
 })();
