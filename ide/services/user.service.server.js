@@ -46,8 +46,25 @@ module.exports = function (app, model) {
     }
 
     function login(req, res) {
-        var user = req.user;
-        res.json(user);
+        var user = req.body;
+        var username = user.username;
+        var password = user.password;
+      /*  if (password)
+            password = bcrypt.hashSync(password);
+*/
+        model.userModel.findUserByCredentials(username, password)
+            .then(
+                function (userObj) {
+                    console.log("in service server2 - " +  userObj);
+                    if (userObj) {
+                        res.json(userObj);
+                    } else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                });
     }
 
     function checkLogin(req, res) {
@@ -64,9 +81,9 @@ module.exports = function (app, model) {
             lastName: user.username
         };
 
-        if (mainuser.password)
+       /* if (mainuser.password)
             mainuser.password = bcrypt.hashSync(mainuser.password);
-
+*/
         console.log("in server1 " + JSON.stringify(mainuser));
 
         model.userModel.createUser(mainuser)
