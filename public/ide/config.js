@@ -3,7 +3,10 @@
         .module("genXapp")
         .config(configure);
 
-    function configure($routeProvider) {
+    function configure($routeProvider, $httpProvider) {
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+        $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+
         $routeProvider
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
