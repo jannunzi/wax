@@ -17,13 +17,13 @@
         function login(user) {
             if (user) {
                 var ret = UserService.login(user);
-                ret.success(function (user) {
-                    if (user === '0') {
+                ret.success(function (userObj) {
+                    if (userObj === '0') {
                         vm.alert = "No such user";
                     }
                     else {
-                        $rootScope.currentUser = user;
-                        $location.url("/user/" + user._id);
+                        $rootScope.currentUser = userObj;
+                        $location.url(`/user/"${userObj._id}/website`);
                     }
                 })
                     .error(function () {

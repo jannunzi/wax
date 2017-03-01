@@ -56,7 +56,6 @@ module.exports = function (app, model) {
 
     function createUser(req, res) {
         var user = req.body;
-        console.log("in server1 " + JSON.stringify(user));
 
         var mainuser = {
             username: user.username,
@@ -68,19 +67,13 @@ module.exports = function (app, model) {
         if (mainuser.password)
             mainuser.password = bcrypt.hashSync(mainuser.password);
 
-        //console.log("in server2 " + JSON.stringify(user));
+        console.log("in server1 " + JSON.stringify(mainuser));
 
         model.userModel.createUser(mainuser)
             .then(
-                function (user) {
-                    if (user) {
-                        req.login(user, function (err) {
-                            if (err) {
-                                res.status(400).send(err);
-                            } else {
-                                res.json(user);
-                            }
-                        });
+                function (userObj) {
+                    if (userObj) {
+                        res.json(userObj);
                     }
                 }
             );

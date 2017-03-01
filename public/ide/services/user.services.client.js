@@ -25,7 +25,6 @@
         }
 
         function createUser(user) {
-            console.log("in client" + JSON.stringify(user));
             return $http.post('/api/register', user);
         }
 
