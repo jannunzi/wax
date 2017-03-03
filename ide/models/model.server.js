@@ -14,7 +14,6 @@ module.exports = function () {
 
     userModel.setModel(model);
     websiteModel.setModel(model);
-
     return model;
 
 };
