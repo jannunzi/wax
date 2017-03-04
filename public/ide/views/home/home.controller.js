@@ -23,7 +23,7 @@
                     }
                     else {
                         $rootScope.currentUser = userObj;
-                        $location.url(`/user/"${userObj._id}/website`);
+                        $location.url(`/user/${userObj._id}/website`);
                     }
                 })
                     .error(function () {
@@ -43,7 +43,7 @@
                 UserService.createUser(user)
                     .success(function (userObj) {
                         $rootScope.currentUser = userObj;
-                        $location.url(`/user/"${userObj._id}/website`);
+                        $location.url(`/user/${userObj._id}/website`);
                     })
                     .error(function (error) {
                         vm.alert = "Cannot create a user";
