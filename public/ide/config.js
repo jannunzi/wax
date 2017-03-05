@@ -14,15 +14,15 @@
             })
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website.view.html",
-                controller : "WebsiteController as WebsiteModel"
+                controller : "WebsiteListController as WebsiteModel"
             })
             .when("/user/:uid/website/new", {
                 templateUrl: "views/website/website-new.html",
-                controller: "NewWebsiteController as WebsiteModel"
+                controller: "WebsiteNewController as WebsiteNewModel"
             })
             .when("/user/:uid/website/:wid", {
                 templateUrl: "views/website/website-edit.html",
-                controller: "EditWebsiteController as WebsiteModel"
+                controller: "WebsiteEditController as WebsiteEditModel"
             })
             .when("/page", {
                 templateUrl: "views/page/page.view.html",
