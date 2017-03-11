@@ -9,14 +9,14 @@
     /* Modified by Anupma : Added Controller code for login and register*/
     function HomeController($rootScope, $location, UserService) {
 
-        var vm = this;
+        const vm = this;
         vm.login = login;
         vm.register = register;
         vm.mySidenav = false;
 
         function login(user) {
             if (user) {
-                var ret = UserService.login(user);
+                const ret = UserService.login(user);
                 ret.success(function (userObj) {
                     if (userObj === '0') {
                         vm.alert = "No such user";
@@ -33,6 +33,7 @@
         }
 
         function register(user) {
+
             if (user.username === undefined || user.password === undefined || user.password2 === undefined) {
                 vm.alert = 'Please enter the required details';
             }
@@ -49,7 +50,7 @@
                         vm.alert = "Cannot create a user";
                     });
             }
+
         }
     }
-
 })();
