@@ -5,16 +5,20 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <meta charset="UTF-8">
-    <link href="css/styles.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>GenXapp</title>
 </head>
 <body>
-    <div ng-controller="HeaderController" ng-include src="'views/header/header.view.html'">
-    </div>
+    <!--<div ng-controller="HeaderController" ng-include src="'views/header/header.view.html'">-->
+    <!--</div>-->
+
 
     <div ng-view>
 
     </div>
+
 </body>
 
 <!--angularjs CDN-->
@@ -24,12 +28,13 @@
 <!--Angular App files-->
 <script src="app.js"> </script>
 <script src="config.js"></script>
+
 <script src="views/header/header.controller.js"></script>
 <script src="views/home/home.controller.js"></script>
 <script src="views/user/user.controller.js"></script>
 <script src="views/website/website.controller.js"></script>
 <script src="views/page/page.controller.js"></script>
-
+<script src="services/user.services.client.js"></script>
 
 <!--Website and Page JS/CSS-->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>

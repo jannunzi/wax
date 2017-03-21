@@ -1,1 +1,103 @@
-<h1>Home</h1>
+<div class="container-fluid">
+    <!--  Sidenav with image  -->
+    <!--<nav class="w3-sidenav w3-hide-medium w3-hide-small" style="width:40%">-->
+        <!--<div class="bgimg"></div>-->
+    <!--</nav>-->
+
+    <!--  Hidden Sidenav (reveals when clicked on User icon) -->
+    <div ng-show="HomeModel.mySidenav">
+        <nav class="w3-sidenav w3-orange w3-animate-right w3-center w3-medium"
+             style="display:block;width:100%;padding-top:150px;right:0; z-index:2;" >
+
+            <a href="javascript:void(0)" ng-click="HomeModel.mySidenav= !HomeModel.mySidenav"
+               class="w3-closenav w3-xxlarge w3-display-topright"
+               style="padding:0 12px;">
+                <i class="fa fa-remove"></i>
+            </a>
+            <div class="w3-padding-8 w3-content w3-text-black" id="signUp" style="margin-bottom:80px;padding: 32px;">
+                <h2>Sign Up</h2>
+                <hr class="w3-opacity">
+                <p>Sig up for awesomeness </p>
+                <form target="_blank">
+                    <p><input class="w3-input w3-padding-16 w3-border " type="text" placeholder="Name"
+                              required name="username" ng-model="HomeModel.user.username"></p>
+                    <p><input class="w3-input w3-padding-16 w3-border" type="password" placeholder="Password"
+                              required name="password" ng-model="HomeModel.user.password"></p>
+                    <p><input class="w3-input w3-padding-16 w3-border" type="password" placeholder="Verify Password"
+                              required name="password2" ng-model="HomeModel.user.password2"></p>
+                    <p>
+                        <button class="w3-btn w3-light-grey w3-padding-large" type="submit">
+                            <a ng-click="HomeModel.register(HomeModel.user)"><i class="fa fa-pencil-square-o"></i> Sign
+                                Up</a>
+                        </button>
+                    </p>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <!--  Page Content  -->
+    <div class="w3-main w3-padding-large">
+
+        <!--  User icon to open sidenav  -->
+        <span class="w3-opennav w3-top w3-padding-top w3-xxlarge w3-margin-right w3-text-grey w3-hover-text-black"
+              style="width:auto;right:0;" ng-click="HomeModel.mySidenav= !HomeModel.mySidenav"><i class="fa fa-user-plus"></i></span>
+
+        <!--  Header  -->
+        <header class="w3-container w3-padding-8 w3-center" id="home">
+            <h1 class="w3-jumbo"><b>WAX</b></h1>
+            <p>Website design using EJS</p>
+        </header>
+
+        <!--  About Section  -->
+        <div class="w3-content w3-justify w3-text-grey w3-padding-8" id="about">
+            <h2>About</h2>
+            <hr class="w3-opacity">
+            <p>Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod
+                tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                id
+                est laborum consectetur adipiscing
+            </p>
+            <!--  End About Section  -->
+        </div>
+
+        <!--  Login Section  -->
+        <div class="w3-padding-8 w3-content w3-text-grey" id="login">
+            <h2>Login</h2>
+            <hr class="w3-opacity">
+
+            <!--<p>Login to explore the site:</p>-->
+            <form target="_blank">
+                <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name"
+                          required name="Name" ng-model="HomeModel.user.username">
+                </p>
+                <p><input class="w3-input w3-padding-16 w3-border" type="password" placeholder="Password"
+                          required name="password" ng-model="HomeModel.user.password"></p>
+                <p>
+                    <button class="w3-btn w3-light-grey w3-padding-large" type="submit"
+                            ng-click="HomeModel.login(HomeModel.user)">
+                        <i class="fa fa-paper-plane"></i> Login
+                    </button>
+                </p>
+            </form>
+            <!--  End Login Section  -->
+        </div>
+        <!--  END PAGE CONTENT  -->
+    </div>
+
+</div>
+<footer class="container-fluid w3-padding-8 w3-light-grey w3-center w3-opacity w3-xlarge">
+    <i class="fa fa-facebook-official w3-hover-text-indigo"></i>
+    <i class="fa fa-instagram w3-hover-text-purple"></i>
+    <i class="fa fa-snapchat w3-hover-text-yellow"></i>
+    <i class="fa fa-pinterest-p w3-hover-text-red"></i>
+    <i class="fa fa-twitter w3-hover-text-light-blue"></i>
+    <i class="fa fa-linkedin w3-hover-text-indigo"></i>
+    <p class="w3-medium">Copyrights reserved by <a href="http://www.w3schools.com/w3css/default.asp"
+                                                   target="_blank"
+                                                   class="w3-hover-text-green">Jose Annunziato</a></p>
+    <!--  End footer  -->
+</footer>
