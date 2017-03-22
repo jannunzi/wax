@@ -1,3 +1,11 @@
 .navbar-default {
     background-color: #428bca;
 }
+
+.bgimg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../images/15.jpg');
+    min-height: 100%;
+}
