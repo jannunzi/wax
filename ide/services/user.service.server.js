@@ -96,10 +96,12 @@ module.exports = function (app, model) {
 
     function updateUser(req, res) {
         var user = req.body;
-        model.userModel.updateUser(user._id, user)
+        var uid = req.params['uid'];
+
+        model.userModel.updateUser(uid, user)
             .then(
-                function (body) {
-                    res.send(user);
+                function (userObj) {
+                    res.send(userObj);
                 },
                 function (error) {
                     res.sendStatus(400).send(error);
