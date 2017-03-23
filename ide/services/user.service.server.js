@@ -42,7 +42,7 @@ module.exports = function (app, model) {
 
     function logout(req, res) {
         req.logOut();
-        res.send(200);
+        res.sendStatus(200);
     }
 
     function login(req, res) {
@@ -55,7 +55,6 @@ module.exports = function (app, model) {
         model.userModel.findUserByCredentials(username, password)
             .then(
                 function (userObj) {
-                    console.log("in service server2 - " +  userObj);
                     if (userObj) {
                         res.json(userObj);
                     } else {
@@ -84,7 +83,6 @@ module.exports = function (app, model) {
        /* if (mainuser.password)
             mainuser.password = bcrypt.hashSync(mainuser.password);
 */
-        console.log("in server1 " + JSON.stringify(mainuser));
 
         model.userModel.createUser(mainuser)
             .then(
@@ -101,7 +99,7 @@ module.exports = function (app, model) {
         model.userModel.updateUser(user._id, user)
             .then(
                 function (body) {
-                    res.sendStatus(200);
+                    res.send(user);
                 },
                 function (error) {
                     res.sendStatus(400).send(error);
@@ -114,7 +112,7 @@ module.exports = function (app, model) {
         model.userModel.deleteUser(uid)
             .then(
                 function (body) {
-                    res.send(body)
+                    res.sendStatus(200);
                 },
                 function (error) {
                     res.sendStatus(400).send(error);
