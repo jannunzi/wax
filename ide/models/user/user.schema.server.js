@@ -5,9 +5,10 @@ module.exports = function () {
     var mongoose = require("mongoose");
     const UserSchema = new mongoose.Schema({
         username: String,
-        firstname: String,
-        lastname: String,
+        firstName: String,
+        lastName: String,
         email: String,
+        phone: String,
         password: String,
         state: String,
         city: String,

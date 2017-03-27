@@ -59,15 +59,14 @@ module.exports = function () {
 
     function deleteUser(userId) {
         return UserModel.findOne(
-            {_id: userId},
-            function (err, user) {
-                UserModel.remove({_id: userId})
+            {_id: userId})
+            .then(function (err, user) {
+                UserModel.remove(
+                    {_id: userId})
                     .then(function () {
                     }, function (error) {
                         console.log(error);
                     });
-            }, function (error) {
-                console.log(error);
             });
     }
 
