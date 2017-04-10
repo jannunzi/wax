@@ -37,6 +37,10 @@
                 templateUrl: "views/user/user.view.html",
                 controller : "UserController as UserModel"
             })
+            .when("/flow", {
+                templateUrl: "views/flow/flow.view.html",
+                controller : "FlowController as FlowModel"
+            })
             .otherwise({
                 redirectTo: "/home"
             });
