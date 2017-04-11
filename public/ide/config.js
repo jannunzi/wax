@@ -39,7 +39,7 @@
             })
             .when("/flow", {
                 templateUrl: "views/flow/flow.view.html",
-                controller : "FlowController as FlowModel"
+                controller : "FlowController"
             })
             .otherwise({
                 redirectTo: "/home"

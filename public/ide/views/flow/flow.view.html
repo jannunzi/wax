@@ -28,8 +28,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">PAGES</a></li>
                     <li><a href="#">DATA</a></li>
-                    <li class="active"><a href="#/page">FLOWS</a></li>
+                    <li class="active"><a href="#/flow">FLOWS</a></li>
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li class="dropdown">-->
                         <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Dropdown <span class="caret"></span></a>-->
@@ -50,42 +51,78 @@
 </nav>
 
 <div class="row container-fluid">
-    <div class="col-sm-2 hidden-xs wbdv-left-pane" style="padding-left: 0; margin-top: 50px">
-        <div class="panel panel-default">
+    <div class="col-sm-2 hidden-xs wbdv-left-pane" style="padding-left: 0; margin-top: 50px; max-width: 250px">
+        <div class="panel panel-default" style="padding-left: 0px">
             <ul class="list-group" style="padding-top: 13px">
                 <li class="list-group-item">
-                    <a href="../page/page.view.html">
+                    <a href="#/flow">
                         Flows
                     </a>
-                    <a ng-show="!FlowModel.addFlow" ng-click="FlowModel.addFlow = !FlowModel.addFlow" class="pull-right">
+                    <a ng-show="!addFlow" ng-click="addFlow = !addFlow" class="pull-right">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
-                    <a  ng-show="FlowModel.addFlow" ng-click="FlowModel.addFlow = !FlowModel.addFlow" class="pull-right">
+                    <a  ng-show="addFlow" ng-click="addFlow = !addFlow" class="pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
-                    <a  ng-show="FlowModel.addFlow" ng-click="FlowModel.addToFlows()" class="pull-right">
+                    <a  ng-show="addFlow" ng-click="addToFlows()" class="pull-right">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </li>
 
-                <li ng-show="FlowModel.addFlow" class="list-group-item">
-                    <input ng-model="FlowModel.newFlow" type="text" class="form-control">
+                <li ng-show="addFlow" class="list-group-item">
+                    <input ng-model="newFlow" type="text" class="form-control">
                 </li>
 
-                <li ng-repeat="flow in FlowModel.flows" class="list-group-item">
-                    <a href="../page/page.view.html">
-                        {{flow}}
+                <li ng-repeat="flow in flows" class="list-group-item">
+                    <a ng-click="ok($index)">
+                        {{flow.name}}
                     </a>
                 </li>
+
             </ul>
+
+            <div id="propertyHeader" style="margin-bottom: 0px">
+                Shape Properties
+            </div>
+            <div id="properties" ng-switch on="editor.selection.className">
+                <div ng-switch-when="draw2d.shape.node.Between">
+                    <div id="propertyName" style="margin-bottom: 0px">
+                        Between
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" >Position</div>
+                        <div class="panel-body" id="position_panel">
+                            <div class="form-group">
+                                x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
+                                y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" ><br>
+                                c: <input class="form-control" type="text" ng-model="editor.selection.attr.bgColor.hashString" >
+                                 <!--y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-10 wbdv-right-pane" style="margin-top: 50px">
+    <div class="col-xs-12 col-sm-10" style="margin-top: 60px">
 
-
-
+        <!--<button class="btn btn-lg btn-primary" ng-click="editor.fileOpen()"  > Open   </button>-->
+        <div class="btn-group">
+            <button class="btn btn-lg btn-default" ng-disabled="!editor.state.canUndo"         ng-click="editor.undo()"  > Undo   </button>
+            <button class="btn btn-lg btn-default" ng-disabled="!editor.state.canRedo"         ng-click="editor.redo()"  > Redo   </button>
+            <button class="btn btn-lg btn-default" ng-disabled="editor.selection.figure==null" ng-click="editor.delete()"> Delete </button>
+        </div>
+        <div id="palettePane" draw2d-palette>
+        </div>
 
     </div>
+
+    <div id="canvas" draw2d-canvas style="margin-top: 50px">
+    </div>
+
+
 </div>
 
 
