@@ -1,0 +1,83 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row">
+        <div class="col-xs-10">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/user/{{UserModel.user._id}}">Profile</a>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="navbar-text navbar-right">
+                <a ng-click="UserModel.updateProfile()">
+                    <span class="glyphicon glyphicon-ok"></span></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid row margin_top">
+    <form>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="username">Username</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="UserModel.user.username"
+                       id="userName"
+                       placeholder="username123">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="email">Email</label>
+                <input type="email"
+                       class="form-control"
+                       ng-model="UserModel.user.email"
+                       id="email"
+                       placeholder="youremail@domain.com">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="firstName">First Name</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="UserModel.user.firstName"
+                       id="firstName"
+                       placeholder="Alice">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="lastName">Last Name</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="UserModel.user.lastName"
+                       id="lastName"
+                       placeholder="Wonderland">
+            </div>
+        </div>
+    </form>
+
+    <div class="col-xs-12 margin_top-10px">
+        <a ng-click="UserModel.getWebsites()" class="btn btn-primary btn-block">Websites</a>
+    </div>
+    <div class="col-xs-12 margin_top-5px">
+        <a ng-click="UserModel.logout()" class="btn btn-warning btn-block">Logout</a>
+    </div>
+    <div class="col-xs-12 margin_top-5px">
+        <a ng-click="UserModel.deleteUser()" class="btn btn-danger btn-block margin-top-6">Unregister</a>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Footer</a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{UserModel.user.uid}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

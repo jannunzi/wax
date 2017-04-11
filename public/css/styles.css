@@ -1,3 +1,23 @@
 .navbar-default {
     background-color: #428bca;
 }
+
+.margin_top {
+    margin-top: 5%;
+}
+
+.margin_top-5px {
+    margin-top: 5px;
+}
+
+.margin_top-10px {
+    margin-top: 10px;
+}
+
+.bgimg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../images/15.jpg');
+    min-height: 100%;
+}

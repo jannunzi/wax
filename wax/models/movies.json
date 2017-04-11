@@ -1,6 +1,7 @@
 {
   "applicationName": "movies",
   "views": [],
+  "flow" : {},
   "startEntity": "actor",
   "entities" : {
     "actor" : {

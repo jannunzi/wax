@@ -1,14 +1,12 @@
-var passport         = require('passport');
-var LocalStrategy    = require('passport-local').Strategy;
-var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
-var mongoose         = require("mongoose");
+const passport         = require('passport');
+const LocalStrategy    = require('passport-local').Strategy;
+const GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const mongoose         = require("mongoose");
 
 module.exports = function(app, model) {
 
-    // var model = require("../models/user/user.model.server.js")();
-
-    var auth = authorized;
+    const auth = authorized;
     app.post  ('/wax/:applicationName/api/user/login', passport.authenticate('local'), login);
     app.get   ('/wax/:applicationName/api/user/loggedin',                              loggedin);
     app.post  ('/wax/:applicationName/api/user/logout',                                logout);
@@ -30,15 +28,15 @@ module.exports = function(app, model) {
         }));
 
     var googleConfig = {
-        clientID        : process.env.GOOGLE_CLIENT_ID,
-        clientSecret    : process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL     : process.env.GOOGLE_CALLBACK_URL
+        clientID        : "vuvu",//process.env.GOOGLE_CLIENT_ID,
+        clientSecret    : 'fsf',//process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL     : 'zfdsfsf',//process.env.GOOGLE_CALLBACK_URL
     };
 
     var facebookConfig = {
-        clientID        : process.env.FACEBOOK_CLIENT_ID,
-        clientSecret    : process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL     : process.env.FACEBOOK_CALLBACK_URL
+        clientID        : 'fsds',//process.env.FACEBOOK_CLIENT_ID,
+        clientSecret    : 'fasf',//process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL     : 'dfdasf',//process.env.FACEBOOK_CALLBACK_URL
     };
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
@@ -55,8 +53,8 @@ module.exports = function(app, model) {
                     if(user) {
                         return done(null, user);
                     } else {
-                        var names = profile.displayName.split(" ");
-                        var newFacebookUser = {
+                        const names = profile.displayName.split(" ");
+                        const newFacebookUser = {
                             lastName:  names[1],
                             firstName: names[0],
                             email:     profile.emails ? profile.emails[0].value:"",
@@ -90,7 +88,7 @@ module.exports = function(app, model) {
                     if(user) {
                         return done(null, user);
                     } else {
-                        var newGoogleUser = {
+                        const newGoogleUser = {
                             lastName: profile.name.familyName,
                             firstName: profile.name.givenName,
                             email: profile.emails[0].value,
@@ -148,8 +146,7 @@ module.exports = function(app, model) {
     }
 
     function login(req, res) {
-        var user = req.user;
-        res.json(user);
+        res.json(req.user);
     }
 
     function loggedin(req, res) {
@@ -162,7 +159,7 @@ module.exports = function(app, model) {
     }
 
     function register(req, res) {
-        var newUser = req.body;
+        const newUser = req.body;
         newUser.roles = ['student'];
 
         model
@@ -198,7 +195,8 @@ module.exports = function(app, model) {
     }
 
     function updateUser(req, res) {
-        var newUser = req.body;
+        const newUser = req.body;
+
         if(!isAdmin(req.user)) {
             delete newUser.roles;
         }
@@ -219,10 +217,7 @@ module.exports = function(app, model) {
     }
 
     function isAdmin(user) {
-        if(user.roles.indexOf("admin") > 0) {
-            return true
-        }
-        return false;
+        return (user.roles.indexOf("admin") > 0);
     }
 
     function authorized (req, res, next) {
@@ -231,5 +226,5 @@ module.exports = function(app, model) {
         } else {
             next();
         }
-    };
-}
+    }
+};
