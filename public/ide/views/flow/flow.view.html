@@ -1,0 +1,135 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="col-sm-2 hidden-xs">
+            <!--<div class="navbar-text pull-left">-->
+                <!--<a href="../website/website.view.html">-->
+                    <!--<span class="glyphicon glyphicon-remove"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Website 123</a>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="navbar-text pull-left visible-xs">
+                <a href="../website/website.view.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-123">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-123">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">PAGES</a></li>
+                    <li><a href="#">DATA</a></li>
+                    <li class="active"><a href="#/flow">FLOWS</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li class="dropdown">-->
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Dropdown <span class="caret"></span></a>-->
+                        <!--<ul class="dropdown-menu">-->
+                            <!--<li><a href="#">Action</a></li>-->
+                            <!--<li><a href="#">Another action</a></li>-->
+                            <!--<li><a href="#">Something else here</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li><a href="#">Separated link</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li><a href="#">One more separated link</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row container-fluid">
+    <div class="col-sm-2 hidden-xs wbdv-left-pane" style="padding-left: 0; margin-top: 50px; max-width: 250px">
+        <div class="panel panel-default" style="padding-left: 0px">
+            <ul class="list-group" style="padding-top: 13px">
+                <li class="list-group-item">
+                    <a href="#/flow">
+                        Flows
+                    </a>
+                    <a ng-show="!addFlow" ng-click="addFlow = !addFlow" class="pull-right">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                    <a  ng-show="addFlow" ng-click="addFlow = !addFlow" class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                    <a  ng-show="addFlow" ng-click="addToFlows()" class="pull-right">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </li>
+
+                <li ng-show="addFlow" class="list-group-item">
+                    <input ng-model="newFlow" type="text" class="form-control">
+                </li>
+
+                <li ng-repeat="flow in flows" class="list-group-item">
+                    <a ng-click="ok($index)">
+                        {{flow.name}}
+                    </a>
+                </li>
+
+            </ul>
+
+            <div id="propertyHeader" style="margin-bottom: 0px">
+                Shape Properties
+            </div>
+            <div id="properties" ng-switch on="editor.selection.className">
+                <div ng-switch-when="draw2d.shape.node.Between">
+                    <div id="propertyName" style="margin-bottom: 0px">
+                        Between
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" >Position</div>
+                        <div class="panel-body" id="position_panel">
+                            <div class="form-group">
+                                x: <input class="form-control" type="number" ng-model="editor.selection.attr.x" ><br>
+                                y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" ><br>
+                                c: <input class="form-control" type="text" ng-model="editor.selection.attr.bgColor.hashString" >
+                                 <!--y: <input class="form-control" type="number" ng-model="editor.selection.attr.y" >-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-10" style="margin-top: 60px">
+
+        <!--<button class="btn btn-lg btn-primary" ng-click="editor.fileOpen()"  > Open   </button>-->
+        <div class="btn-group">
+            <button class="btn btn-lg btn-default" ng-disabled="!editor.state.canUndo"         ng-click="editor.undo()"  > Undo   </button>
+            <button class="btn btn-lg btn-default" ng-disabled="!editor.state.canRedo"         ng-click="editor.redo()"  > Redo   </button>
+            <button class="btn btn-lg btn-default" ng-disabled="editor.selection.figure==null" ng-click="editor.delete()"> Delete </button>
+        </div>
+        <div id="palettePane" draw2d-palette>
+        </div>
+
+    </div>
+
+    <div id="canvas" draw2d-canvas style="margin-top: 50px">
+    </div>
+
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Footer</a>
+        </div>
+    </div>
+</nav>
