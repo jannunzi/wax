@@ -53,10 +53,19 @@
         <div class="panel panel-default" style="margin-top: 70px;padding-left:0px;">
             <!-- Default panel contents -->
             <div class="panel-heading">
-                Pages
-                <a href="#/user/{{PageModel.uid}}/page/new" class="pull-right">
-                    <span class="glyphicon glyphicon-plus"></span>
+                New Page
+                <a href="#/user/{{PageModel.uid}}/page" class="pull-right">
+                    Done
                 </a>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <label for="pagename" style="font-size: smaller;">PAGE NAME</label>
+                    <input id="pagename">
+                </div>
+                <div style="padding-top: 10px;">
+                    <a class="btn btn-danger btn-block" href="#/user/{{PageModel.uid}}/page">Cancel</a>
+                </div>
             </div>
 
             <!--<ul class="list-group">

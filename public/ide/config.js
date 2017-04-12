@@ -28,9 +28,17 @@
                 templateUrl: "views/website/website-edit.html",
                 controller: "WebsiteEditController as WebsiteEditModel"
             })
-            .when("/page", {
+            .when("/user/:uid/page", {
                 templateUrl: "views/page/page.view.html",
-                controller: "PageController as PageModel"
+                controller : "PageListController as PageModel"
+            })
+            .when("/user/:uid/page/new", {
+                templateUrl: "views/page/page.new.html",
+                controller: "PageNewController as PageNewModel"
+            })
+            .when("/user/:uid/page/:pid", {
+                templateUrl: "views/page/page.edit.html",
+                controller: "PageEditController as PageEditModel"
             })
 
             .when("/user", {
