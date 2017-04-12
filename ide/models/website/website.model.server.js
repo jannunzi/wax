@@ -26,6 +26,7 @@ module.exports = function () {
             .then(function (websiteObj) {
                 model.userModel.findUserById(userId)
                     .then(function (userObj) {
+                        websiteObj.owner = userObj.username;
                         websiteObj._user = userObj._id;
                         websiteObj.save();
                         userObj.websites.push(websiteObj);

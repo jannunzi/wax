@@ -12,6 +12,10 @@
                 templateUrl: "views/home/home.view.html",
                 controller : "HomeController as HomeModel"
             })
+            .when("/user/:uid", {
+                templateUrl: "views/user/user.view.html",
+                controller : "UserController as UserModel"
+            })
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website.view.html",
                 controller : "WebsiteListController as WebsiteModel"
@@ -32,6 +36,10 @@
             .when("/user", {
                 templateUrl: "views/user/user.view.html",
                 controller : "UserController as UserModel"
+            })
+            .when("/flow", {
+                templateUrl: "views/flow/flow.view.html",
+                controller : "FlowController"
             })
             .otherwise({
                 redirectTo: "/home"
