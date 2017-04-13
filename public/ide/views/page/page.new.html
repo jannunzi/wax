@@ -50,51 +50,23 @@
 
 <div class="row container-fluid">
     <div class="col-sm-2 hidden-xs wbdv-left-pane">
-        <div class="panel panel-default" style="margin-top: 70px;padding-left:0px;">
+        <div class="panel panel-default" style="margin-top: 70px;padding-left:0;">
             <!-- Default panel contents -->
             <div class="panel-heading">
                 New Page
-                <a href="#/user/{{PageModel.uid}}/page" class="pull-right">
+                <a ng-click="PageNewModel.createPage(PageNewModel.page)" class="pull-right">
                     Done
                 </a>
             </div>
             <div class="panel-body">
                 <div>
-                    <label for="pagename" style="font-size: smaller;">PAGE NAME</label>
-                    <input id="pagename">
+                        <label for="name">PAGE NAME</label>
+                    <input class="form-control" ng-model="PageNewModel.page.name" id="name">
                 </div>
                 <div style="padding-top: 10px;">
                     <a class="btn btn-danger btn-block" href="#/user/{{PageModel.uid}}/page">Cancel</a>
                 </div>
             </div>
-
-            <!--<ul class="list-group">
-                <li class="list-group-item">
-                    <a href="../page/page.view.html">
-                        Home
-                    </a>
-                    <a href="../website/website-edit.html" class="pull-right">
-                        <span class="glyphicon glyphicon-file"></span>
-                    </a>
-                </li>
-                <li class="list-group-item active">
-                    <a href="../page/page.view.html">
-                        About
-                    </a>
-                    <a href="../website/website-edit.html" class="pull-right">
-                        <span class="glyphicon glyphicon-file"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page.view.html">
-                        Contact
-                    </a>
-                    <a href="../website/website-edit.html" class="pull-right">
-                        <span class="glyphicon glyphicon-file"></span>
-                    </a>
-                </li>
-            </ul>-->
-
         </div>
     </div>
     <!--<div class="col-xs-12 col-sm-10 wbdv-right-pane">-->
