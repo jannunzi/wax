@@ -28,18 +28,17 @@
                 templateUrl: "views/website/website-edit.html",
                 controller: "WebsiteEditController as WebsiteEditModel"
             })
-            .when("/page", {
-                templateUrl: "views/page/page.view.html",
+            .when("/user/:uid/website/:wid/page", {
+                templateUrl: "views/page/page-list.html",
                 controller: "PageController as PageModel"
             })
-
             .when("/user", {
                 templateUrl: "views/user/user.view.html",
                 controller : "UserController as UserModel"
             })
-            .when("/flow", {
+            .when("/user/:uid/website/:wid/flow", {
                 templateUrl: "views/flow/flow.view.html",
-                controller : "FlowController"
+                controller : "FlowController as FlowModel"
             })
             .otherwise({
                 redirectTo: "/home"

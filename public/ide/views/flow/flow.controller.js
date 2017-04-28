@@ -6,12 +6,18 @@
         .module("genXapp")
         .controller("FlowController", FlowController);
 
-    function FlowController($modal, $scope, FileFactory) {
+    function FlowController($modal, $scope, FileFactory, $routeParams) {
         $scope.addFlow = false;
         $scope.addToFlows = addToFlows;
         $scope.newFlow = "";
         $scope.flows = ['Flow1', 'Flow2', 'Flow3'];
 
+        //user/:uid/website/:wid/flow
+        var vm = this;
+        var uid = ($routeParams.uid);
+        var wid = ($routeParams.wid);
+        vm.uid = uid;
+        vm.wid = wid;
 
         function addToFlows() {
 
