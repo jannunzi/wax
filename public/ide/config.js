@@ -28,15 +28,15 @@
                 templateUrl: "views/website/website-edit.html",
                 controller: "WebsiteEditController as WebsiteEditModel"
             })
-            .when("/user/:uid/page", {
+            .when("/user/:uid/website/:wid/page", {
                 templateUrl: "views/page/page.view.html",
                 controller : "PageListController as PageModel"
             })
-            .when("/user/:uid/page/new", {
+            .when("/user/:uid/website/:wid/page", {
                 templateUrl: "views/page/page.new.html",
                 controller: "PageNewController as PageNewModel"
             })
-            .when("/user/:uid/page/:pid", {
+            .when("/user/:uid/website/:wid/page/:pid", {
                 templateUrl: "views/page/page.edit.html",
                 controller: "PageEditController as PageEditModel"
             })
